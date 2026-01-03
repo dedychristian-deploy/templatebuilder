@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script src="customform.js"></script>
+    <script src="text_template.js"></script>
+    <script src="bootstrap-slider.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src='spectrum.js'></script>
+    <script src='jquery.connections.js'></script>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel='stylesheet' href='spectrum.css'>
+    <link rel="stylesheet" href="bootstrap-slider.css">
+    <link rel="stylesheet" href="text_template.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+<body>
+<div class="container">
+    <form>
+
+        <!--<div class="row concepts">-->
+            <!--<div class="col-xs-12">-->
+                <!--<div class="spacer">-->
+                    <!--<span class="subtitle">CONCEPT</span>-->
+                    <!--<div class="btn-group segmentedControl">-->
+                        <!--<div class="btn btn-default segment" data-viz="Viz Story Landscape">Viz Story Landscape</div>-->
+                        <!--<div class="btn btn-default segment" data-viz="Viz Story Portrait">Viz Story Portrait</div>-->
+                        <!--<div class="btn btn-default segment" data-viz="Viz Story Square">Viz Story Square</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div id='textControl' class="spacer">
+                    <label for="field_03-text" class="textAreaLabel">TEXT CONTENT</label>
+                    <textarea id="field_03-text"  class="boundTextField" cols="100" autofocus wrap="soft"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Just a HR divider-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="row variants">
+            <div class="col-xs-12">
+                <div class="spacer">
+
+                    <span class="subtitle">VARIANT</span>
+                    <div class="btn-group segmentedControl">
+                        <div class="btn btn-default segment" data-viz="Alpha Fade">Alpha Fade</div>
+                        <div class="btn btn-default segment" data-viz="No Animation">No Animation</div>
+                        <div class="btn btn-default segment" data-viz="Text Fx Scale">Text Fx Scale</div>
+                        <div class="btn btn-default segment" data-viz="Text Fx Write">Text Fx Write</div>
+                    </div>
+
+
+                    <!--<div class="btn-group">-->
+                    <!--<button type="button" class="btn btn-danger">Action</button>-->
+                    <!--<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--<span class="sr-only">Toggle Dropdown</span>-->
+                    <!--</button>-->
+                    <!--<div class="dropdown-menu">-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row spacer">
+            <div class="col-xs-12">
+                <span class="subtitle ">POSITION</span>
+            </div>
+        </div>
+
+        <div class="row segmentedControl position">
+            <div class="col-xs-12">
+                <!--Top row of positional buttons-->
+                <div id='tl-corner' class="btn btn-default corner-selector segment" data-viz="0 0">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+                <div id='t-corner' class="btn btn-default corner-selector segment" data-viz="1 0">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+                <div id='tr-corner' class="btn btn-default corner-selector segment" data-viz="2 0">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+
+                <div style="display: table-row;"></div>
+
+                <!--Middle row-->
+                <div id='ml-corner' class="btn btn-default corner-selector segment" data-viz="0 1">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+                <div id='m-corner' class="btn btn-default corner-selector segment" data-viz="1 1">
+                    <svg width="100%" height="100%" viewbox="0 0 20 20" fill="black">
+                        <path id="arc2" class="arc" fill="none" stroke-width="2" />
+                        <path id="arc3" class="arc" fill="none" stroke-width="2" />
+                    </svg>
+                </div>
+                <div id='mr-corner' class="btn btn-default corner-selector segment" data-viz="2 1">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+
+                <div style="display: table-row;"></div>
+
+                <!--Bottom row-->
+                <div id='bl-corner' class="btn btn-default corner-selector segment" data-viz="0 2">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+                <div id='b-corner' class="btn btn-default corner-selector segment" data-viz="1 2">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+                <div id='br-corner' class="btn btn-default corner-selector segment" data-viz="2 2">
+                    <svg  viewbox="0 0 20 20" fill="black">
+                        <polygon points="10,2 2,10 7,10 7,18 13,18, 13,10 18,10 "/>
+                    </svg>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row spacer">
+            <div class="col-xs-12 ">
+                <span class="subtitle">SIZE</span>
+                <div class="" id="scaleScrollerContainer"><b>0.3</b>
+                    <input id="scaleSlider" data-slider-id='scaleSlider' type="text" data-slider-min="0.3" data-slider-max="5" data-slider-step=".1" > <b>5</b>
+                </div>
+            </div>
+        </div>
+
+        <!--Just a HR divider-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="row spacer omo">
+            <div class="col-xs-12">
+                <div class="btn-group segmentedControl">
+                    <div class="btn btn-default btn-responsive segment" data-toggle="tooltip" title="Normal" data-viz="0">No background</div>
+                    <div class="btn btn-default btn-responsive segment" data-toggle="tooltip" title="Backplate" data-viz="1">Backplate</div>
+                    <div class="btn btn-default btn-responsive segment" data-toggle="tooltip" title="Fullscreen" data-viz="2">Fullscreen</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row spacer bgColorAlpha disableable">
+            <div class="col-xs-12">
+                <span class="subtitle ">BACKGROUND COLOR AND OPACITY</span>
+                <div id="backplateColorWidget" class="colorWidget">
+                    <div class="colorRepresentation">
+                        <svg height="20" width="20" class="color">
+                            <rect class="colorRect" x="1" y="1" height="18" width="18" fill="red" stroke="white" stroke-width="1"></rect>
+                            <polygon fill="white" points="11,1 19,9 19,1"></polygon>
+                        </svg>
+                    </div>
+
+                    <div class="colorText">Loading...</div>
+
+                    <div class="colorAlpha">
+                        <div class="colorBar"></div>
+                        <span class="unselectable">65%</span>
+                    </div>
+
+                    <div class="colorHandle">
+                        <div class="btn">
+                            <svg height="30" width="20">
+                                <polygon fill="white" points="10,8 7,14 13,14"></polygon>
+                                <polygon fill="white" points="7,16 10,21 13,16"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row spacer textColorAlpha disableable">
+            <div class="col-xs-12">
+                <span class="subtitle">TEXT COLOR AND OPACITY</span>
+                <div id="textColorWidget" class="colorWidget">
+                    <div class="colorRepresentation">
+                        <svg height="20" width="20" class="color">
+                            <rect class="colorRect" x="1" y="1" height="18" width="18" fill="red" stroke="white" stroke-width="1"></rect>
+                            <svg class="colorDetail dark" xmlns="http://www.w3.org/2000/svg" fill="#A9ACAE" id="tools_Text" version="1.1" xml:space="preserve" x="3" y="3" viewBox="0 0 24 24">
+                            <path d="M 6.21,-0 L 0,16 3.12,16 4.29,13 11.67,13 12.87,16 16,16 9.62,-0 6.21,-0 Z M 7.93,3.62 L 10.47,10 5.45,10 7.93,3.62 Z M 7.93,3.62" id="tools_Text-bezier"></path>
+                            </svg>
+                        </svg>
+                    </div>
+
+                    <div class="colorText">Loading...</div>
+
+                    <div class="colorAlpha">
+                        <div class="colorBar"></div>
+                        <span class="unselectable">65%</span>
+                    </div>
+
+                    <div class="colorHandle">
+                        <div class="btn">
+                            <svg height="30" width="20">
+                                <polygon fill="white" points="10,8 7,14 13,14"></polygon>
+                                <polygon fill="white" points="7,16 10,21 13,16"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row textMask disableable">
+            <div class="col-xs-12">
+                <input type="checkbox" id="field_20-textmask" value="">
+                <label for="field_20-textmask">
+                    <span class="cb">Punch out text</span>
+                </label>
+            </div>
+        </div>
+        <div class="row spacer margins disableable">
+            <div class="col-xs-12">
+                <span class="subtitle">PADDING</span>
+                <div class="marginCanvas">
+                    <div class="marginHorizontal">
+                        <div id="leftMarginContainer">
+                            <input id="field_13-margin-left" class="marginInputs" type="text" value="10"></div>
+                        <div id="rightMarginContainer">
+                            <input id="field_14-margin-right" class="marginInputs" type="text" value="10"></div>
+                    </div>
+
+                    <div class="marginVertical">
+                        <div id="topMarginContainer">
+                            <input id="field_11-margin-top" class="marginInputs" type="text" value="10"></div>
+                        <div id="bottomMarginContainer">
+                            <input id="field_12-margin-bottom" class="marginInputs" type="text" value="10"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row spacer bevel disableable">
+            <div class="col-xs-12">
+                <span class="subtitle">ROUNDED CORNERS</span>
+                <div id="bevelScrollerContainer"> <b>0</b>
+                    <input id="bevelSlider" data-slider-id='bevelSlider' type="text" data-slider-min="0" data-slider-max="25" data-slider-step="1" > <b>25</b>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

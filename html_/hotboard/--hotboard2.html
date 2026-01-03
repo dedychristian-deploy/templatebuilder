@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+	const url = "http://10.11.6.68:3000/api/summary-live/";  
+
+    async function ambilData1(value) {
+      try {
+        const res = await fetch(url + value.toUpperCase());
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log(data); // cek di console
+		vizrt.payloadhosting.setFieldText("01_COMPANY", data.stockname );
+		vizrt.payloadhosting.setFieldText("01_PRICE", data.last_price );
+		vizrt.payloadhosting.setFieldText("01_POINT", data.net_change );
+		vizrt.payloadhosting.setFieldText("01_B_SIGN", data.pct_change );
+      } catch (err) {
+        
+      }
+    }
+
+	async function ambilData2(value) {
+      try {
+        const res = await fetch(url + value.toUpperCase());
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log(data); // cek di console
+		vizrt.payloadhosting.setFieldText("02_COMPANY", data.stockname );
+		vizrt.payloadhosting.setFieldText("02_PRICE", data.last_price );
+		vizrt.payloadhosting.setFieldText("02_POINT", data.net_change );
+		vizrt.payloadhosting.setFieldText("02_B_SIGN", data.pct_change );
+      } catch (err) {
+        
+      }
+    }
+
+	$(document).ready(function () {
+		
+		console.log("Script by: Graphic CNBC INDONESIA-2020");
+		// Will be called when the field with id "code" changes (coming from control text)
+		var p2 = vizrt.payloadhosting;
+		p2.initialize();
+		p2.setFieldValueCallbacks({ "code1": ambilData1,  "code2": ambilData2});
+
+	});
+
+    </script>
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+	<label class="control-label">Ric Code 1</label>													
+	<input class="input" type="text" id="field_code1" name="field_code1">
+	<label class="control-label">Ric Code 2 </label>													
+	<input class="input" type="text" id="field_code2" name="field_code2">
+	
+	 	
+
+	
+</body>
+</html>

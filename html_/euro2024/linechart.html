@@ -1,0 +1,509 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../../js/payloadhosting.js"></script>    
+	<script src="../../js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log("Script by: Graphic CNBC INDONESIA-2021");
+			var data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13;
+			var bulan1, bulan2, bulan3, bulan4, bulan5, bulan6, bulan7, bulan8, bulan9, bulan10, bulan11, bulan12, bulan13;
+			var tahun1, tahun2, tahun3, tahun4, tahun5, tahun6, tahun7, tahun8, tahun9, tahun10, tahun11, tahun12, tahun13;
+
+			var jumlahdata;
+
+			var pl = vizrt.payloadhosting;
+
+			// Will be called when the field with id "01" changes
+			function ondataChanged(value) {
+				notifyHost(pl);
+				console.log(value);
+			}
+
+			function onbulanChanged(value) {
+				notifyHostMonth(pl);
+				console.log(value);
+			}
+
+			function ontahunChanged(value) {
+				notifyHostYear(pl);
+				console.log(value);
+			}
+
+			function onBarChanged(value) {
+				//notifyHostYear(pl);
+				jumlahdata = value;
+				notifyHost(pl);
+				notifyHostMonth(pl);
+				notifyHostYear(pl);
+			}
+
+			function notifyHost(host) {	
+
+			data1 = host.getFieldText("data1");
+			data2 = host.getFieldText("data2");
+			data3 = host.getFieldText("data3");
+			data4 = host.getFieldText("data4");
+			data5 = host.getFieldText("data5");
+			data6 = host.getFieldText("data6");
+			data7 = host.getFieldText("data7");
+			data8 = host.getFieldText("data8");
+			data9 = host.getFieldText("data9");
+			data10 = host.getFieldText("data10");
+			data11 = host.getFieldText("data11");
+			data12 = host.getFieldText("data12");
+			data13 = host.getFieldText("data13");
+			
+
+			console.log(jumlahdata);
+
+			if (jumlahdata == "13") {
+				host.setFieldText("01", data1 + ";" + data2+ ";" + data3+ ";" + data4+ ";" + data5+ ";" + data6+ ";" + data7+ ";" + data8+ ";" + data9+ ";" + data10+ ";" + data11+ ";" + data12+ ";" + data13);
+			}
+			else if (jumlahdata == "12") {
+				host.setFieldText("01", data1 + ";" + data2+ ";" + data3+ ";" + data4+ ";" + data5+ ";" + data6+ ";" + data7+ ";" + data8+ ";" + data9+ ";" + data10+ ";" + data11+ ";" + data12);
+			}
+			else if (jumlahdata == "11") {
+				host.setFieldText("01", data1 + ";" + data2+ ";" + data3+ ";" + data4+ ";" + data5+ ";" + data6+ ";" + data7+ ";" + data8+ ";" + data9+ ";" + data10+ ";" + data11);
+			}
+			else if (jumlahdata == "10") {
+				host.setFieldText("01", data1 + ";" + data2+ ";" + data3+ ";" + data4+ ";" + data5+ ";" + data6+ ";" + data7+ ";" + data8+ ";" + data9+ ";" + data10);
+			}
+			
+	        
+            }
+
+			function notifyHostMonth(host) {	
+
+			bulan1 = host.getFieldText("bulan1");
+			bulan2 = host.getFieldText("bulan2");
+			bulan3 = host.getFieldText("bulan3");
+			bulan4 = host.getFieldText("bulan4");
+			bulan5 = host.getFieldText("bulan5");
+			bulan6 = host.getFieldText("bulan6");
+			bulan7 = host.getFieldText("bulan7");
+			bulan8 = host.getFieldText("bulan8");
+			bulan9 = host.getFieldText("bulan9");
+			bulan10 = host.getFieldText("bulan10");
+			bulan11 = host.getFieldText("bulan11");
+			bulan12 = host.getFieldText("bulan12");
+			bulan13 = host.getFieldText("bulan13");
+
+			if (jumlahdata == "13") {
+				host.setFieldText("03", bulan1 + ";" + bulan2+ ";" + bulan3+ ";" + bulan4+ ";" + bulan5+ ";" + bulan6+ ";" + bulan7+ ";" + bulan8+ ";" + bulan9+ ";" + bulan10+ ";" + bulan11+ ";" + bulan12+ ";" + bulan13);
+			}
+			else if (jumlahdata == "12") {
+				host.setFieldText("03", bulan1 + ";" + bulan2+ ";" + bulan3+ ";" + bulan4+ ";" + bulan5+ ";" + bulan6+ ";" + bulan7+ ";" + bulan8+ ";" + bulan9+ ";" + bulan10+ ";" + bulan11+ ";" + bulan12);
+			}
+			else if (jumlahdata == "11") {
+				host.setFieldText("03", bulan1 + ";" + bulan2+ ";" + bulan3+ ";" + bulan4+ ";" + bulan5+ ";" + bulan6+ ";" + bulan7+ ";" + bulan8+ ";" + bulan9+ ";" + bulan10+ ";" + bulan11);
+			}
+			else if (jumlahdata == "10") {
+				host.setFieldText("03", bulan1 + ";" + bulan2+ ";" + bulan3+ ";" + bulan4+ ";" + bulan5+ ";" + bulan6+ ";" + bulan7+ ";" + bulan8+ ";" + bulan9+ ";" + bulan10);
+			}
+			
+		}
+
+			function notifyHostYear(host) {	
+
+			tahun1 = host.getFieldText("tahun1");
+			tahun2 = host.getFieldText("tahun2");
+			tahun3 = host.getFieldText("tahun3");
+			tahun4 = host.getFieldText("tahun4");
+			tahun5 = host.getFieldText("tahun5");
+			tahun6 = host.getFieldText("tahun6");
+			tahun7 = host.getFieldText("tahun7");
+			tahun8 = host.getFieldText("tahun8");
+			tahun9 = host.getFieldText("tahun9");
+			tahun10 = host.getFieldText("tahun10");
+			tahun11 = host.getFieldText("tahun11");
+			tahun12 = host.getFieldText("tahun12");
+			tahun13 = host.getFieldText("tahun13");
+
+			if (jumlahdata == "13") {
+				host.setFieldText("02", tahun1 + ";" + tahun2+ ";" + tahun3+ ";" + tahun4+ ";" + tahun5+ ";" + tahun6+ ";" + tahun7+ ";" + tahun8+ ";" + tahun9+ ";" + tahun10+ ";" + tahun11+ ";" + tahun12+ ";" + tahun13);
+			}
+			else if (jumlahdata == "12") {
+				host.setFieldText("02", tahun1 + ";" + tahun2+ ";" + tahun3+ ";" + tahun4+ ";" + tahun5+ ";" + tahun6+ ";" + tahun7+ ";" + tahun8+ ";" + tahun9+ ";" + tahun10+ ";" + tahun11+ ";" + tahun12);
+			}
+			else if (jumlahdata == "11") {
+				host.setFieldText("02", tahun1 + ";" + tahun2+ ";" + tahun3+ ";" + tahun4+ ";" + tahun5+ ";" + tahun6+ ";" + tahun7+ ";" + tahun8+ ";" + tahun9+ ";" + tahun10+ ";" + tahun11);
+			}
+			else if (jumlahdata == "10") {
+				host.setFieldText("02", tahun1 + ";" + tahun2+ ";" + tahun3+ ";" + tahun4+ ";" + tahun5+ ";" + tahun6+ ";" + tahun7+ ";" + tahun8+ ";" + tahun9+ ";" + tahun10);
+			}
+			
+		}
+
+            pl.initialize();
+            pl.setFieldValueCallbacks({ "data1": ondataChanged, "data2": ondataChanged, "data3": ondataChanged, "data4": ondataChanged, "data5": ondataChanged, "data6": ondataChanged, "data7": ondataChanged, 
+			"data8": ondataChanged, "data9": ondataChanged, "data10": ondataChanged, "data11": ondataChanged, "data12": ondataChanged, "data13": ondataChanged,
+			"bulan1": onbulanChanged, "bulan2": onbulanChanged, "bulan3": onbulanChanged, "bulan4": onbulanChanged, "bulan5": onbulanChanged, "bulan6": onbulanChanged, "bulan7": onbulanChanged, 
+			"bulan8": onbulanChanged, "bulan9": onbulanChanged, "bulan10": onbulanChanged, "bulan11": onbulanChanged, "bulan12": onbulanChanged, "bulan13": onbulanChanged,
+			"tahun1": ontahunChanged, "tahun2": ontahunChanged, "tahun3": ontahunChanged, "tahun4": ontahunChanged, "tahun5": ontahunChanged, "tahun6": ontahunChanged, "tahun7": ontahunChanged, 
+			"tahun8": ontahunChanged, "tahun9": ontahunChanged, "tahun10": ontahunChanged, "tahun11": ontahunChanged, "tahun12": ontahunChanged, "tahun13": ontahunChanged,
+			"jumlahdata": onBarChanged 
+		});
+			
+		});
+			</script>
+	<link type="text/css" rel="stylesheet" href="../styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+	<div class="spacer">
+		<label class="control-label">Data Chart</label>
+	</div>		
+	<div class="container">	
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Data/Value</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data1" name="field_data1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Bulan</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan1" name="field_bulan1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Tahun</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun1" name="field_tahun1" >		
+				</div>			
+			</div>	
+		</div>
+		
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data2" name="field_data2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan2" name="field_bulan2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun2" name="field_tahun2" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data3" name="field_data3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan3" name="field_bulan3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun3" name="field_tahun3" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data4" name="field_data4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan4" name="field_bulan4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun4" name="field_tahun4" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data5" name="field_data5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan5" name="field_bulan5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun5" name="field_tahun5" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data6" name="field_data6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan6" name="field_bulan6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun6" name="field_tahun6" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data7" name="field_data7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan7" name="field_bulan7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun7" name="field_tahun7" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data8" name="field_data8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan8" name="field_bulan8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun8" name="field_tahun8" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data9" name="field_data9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan9" name="field_bulan9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text"id="field_tahun9" name="field_tahun9"  >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data10" name="field_data10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan10" name="field_bulan10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun10" name="field_tahun10" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data11" name="field_data11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan11" name="field_bulan11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun11" name="field_tahun11" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data12" name="field_data12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan12" name="field_bulan12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun12" name="field_tahun12" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data13" name="field_data13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan13" name="field_bulan13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun13" name="field_tahun13" >		
+				</div>			
+			</div>	
+		</div>
+	</div>	 	
+
+	
+</body>
+</html>

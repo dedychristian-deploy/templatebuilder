@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Chart</title>
+  <script src="jquery.min.js"></script>
+  <script src="payloadhosting.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <script>
+  const url = "http://10.11.6.68:3000/api/summary-live/";
+
+  // === Fungsi umum untuk ambil data ===
+  async function ambilData(index, value) {
+    try {
+      const res = await fetch(url + value.toUpperCase());
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+      const data = await res.json();
+      console.log(`📊 Data ${index}:`, data);
+
+      // isi field sesuai urutan index
+      vizrt.payloadhosting.setFieldText(`${index.toString().padStart(2, '0')}_COMPANY`, data.stockname);
+      vizrt.payloadhosting.setFieldText(`${index.toString().padStart(2, '0')}_PRICE`, data.last_price);
+      vizrt.payloadhosting.setFieldText(`${index.toString().padStart(2, '0')}_A_SIGN`, data.net_change);
+      vizrt.payloadhosting.setFieldText(`${index.toString().padStart(2, '0')}_B_SIGN`, data.pct_change);
+    } catch (err) {
+      console.error(`❌ Error ambil data ${index}:`, err.message);
+    }
+  }
+
+  $(document).ready(function() {
+    console.log("Script by: Graphic CNBC INDONESIA-2025");
+    vizrt.payloadhosting.initialize();
+
+    // Loop dari 1 sampai 12
+    for (let i = 1; i <= 12; i++) {
+      const fieldId = `#field_code${i}`;
+
+      // Daftarin event listener input
+      $(fieldId).on('input', function() {
+        const value = $(this).val().toUpperCase();
+        const cleanValue = value.replace(/\//g, ''); // hapus tanda '/'
+        console.log(`🎯 User ubah CODE${i}:`, cleanValue);
+
+        vizrt.payloadhosting.setFieldText(`code${i}`, value);
+        ambilData(i, cleanValue);
+      });
+    }
+  });
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mosartTiming.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+  <label class="control-label">
+    DATA YANG TAMPIL ADALAH DATA SNAPSHOT UNTUK CURRENT TIME, PERUBAHAN DATA REALTIME AKAN TERLIHAT PADA SAAT ON-AIR
+  </label>
+
+  <!-- Loop input manual (bisa generate otomatis via backend juga) -->
+  <div id="form-area">
+    <label class="control-label">Ric Code 1</label><input class="input" type="text" id="field_code1">
+    <label class="control-label">Ric Code 2</label><input class="input" type="text" id="field_code2">
+    <label class="control-label">Ric Code 3</label><input class="input" type="text" id="field_code3">
+    <label class="control-label">Ric Code 4</label><input class="input" type="text" id="field_code4">
+    <label class="control-label">Ric Code 5</label><input class="input" type="text" id="field_code5">
+    <label class="control-label">Ric Code 6</label><input class="input" type="text" id="field_code6">
+    <label class="control-label">Ric Code 7</label><input class="input" type="text" id="field_code7">
+    <label class="control-label">Ric Code 8</label><input class="input" type="text" id="field_code8">
+    <label class="control-label">Ric Code 9</label><input class="input" type="text" id="field_code9">
+    <label class="control-label">Ric Code 10</label><input class="input" type="text" id="field_code10">
+    <label class="control-label">Ric Code 11</label><input class="input" type="text" id="field_code11">
+    <label class="control-label">Ric Code 12</label><input class="input" type="text" id="field_code12">
+  </div>
+</body>
+</html>
