@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title>Document</title>
+    <!--  JS LIBRARY  -->
+    <script src="payloadhosting.js"></script>
+    <script src="jquery.min.js"></script>
+
+    <link rel="stylesheet" href="mosartTiming.css">
+    <style>
+        body{
+        margin:0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Open Sans Light", sans-serif;
+        font-size:12px;
+        }
+        /* ===== HEADER ===== */
+        .header{
+        background: #FA9000;
+        height: 90px;
+        display:flex;
+        align-items:center;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--line);
+        }
+        .header img{
+        height: 70px;
+        width:auto;
+        display:block;
+        }
+
+        /* ==== ROW ADN COLUMN ==== */
+        .row {
+        display: flex;
+        margin-bottom: 10px;
+        }
+        .column{
+            flex:1;
+            padding: 4px;
+        }
+
+        /* ==== Beatuty form ==== */
+        label {
+            display: inline-block;
+            margin-bottom: 4px;
+            font-size: 15px;
+            width: 80px;
+        }
+        input {
+            width: calc(100% - 90px);
+            padding: 6px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="aje.png">
+    </div>
+    <!--
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+            </div>
+        </div>
+    -->
+
+    <div class="row main">
+
+        <!--  input/preview  -->
+        <div class="column preview">
+
+        </div>
+
+        <!--  form  -->
+        <div class="column form">
+            <div class="row">
+                <div class="column">
+                    <div class="row field">
+                        <div class="column label">Title</div>
+                        <div class="column input"><input type="text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mosart Timing Tabs</title>
+
+  <!-- JS SOURCE-->
+  <script src="payloadhosting.js"></script>
+  <script src="jquery.min.js"></script>
+
+  <!-- MOSART TIMING CSS -->
+  <link rel="stylesheet" href="mosartTiming.css">
+
+  <style>
+    :root{
+      --brand:#FA9000;
+      --accent:#00a023;
+      --bg:#d6d6d6;
+      --panel:#eeeeee;
+      --text:#111;
+      --muted:#444;
+      --line: rgba(0,0,0,.18);
+    }
+
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Open Sans Light", sans-serif;
+      font-size:12px;
+    }
+
+    /* ===== HEADER ===== */
+    .header{
+      background: var(--brand);
+      height: 90px;
+      display:flex;
+      align-items:center;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .header img{
+      height: 70px;
+      width:auto;
+      display:block;
+    }
+
+    /* ===== TAB BAR ===== */
+    .tab{
+      display:flex;
+      gap:6px;
+      background: var(--brand);
+      padding: 6px 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tab button{
+      height: 28px;
+      padding: 0 14px;
+      background: transparent;
+      color: rgba(255,255,255,.92);
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: .2px;
+      border-radius: 8px 8px 0 0;
+    }
+    .tab button:hover{
+      background: rgba(255,255,255,.14);
+      color:#fff;
+    }
+    .tab button.active{
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* ===== TAB CONTENT ===== */
+    .tabcontent{
+      display:none;
+      padding: 14px;
+    }
+    .tabcontent.is-active{
+      display:block;
+    }
+
+    /* ===== SIMPLE PANEL / CARD ===== */
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      max-width: 520px;
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    label{
+      font-weight:700;
+      color: var(--muted);
+      min-width: 110px;
+    }
+
+    select{
+      height: 34px;
+      min-width: 200px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,.25);
+      background: #d3d3d3; /* lu suka abu terang */
+      color: #111;
+      outline: none;
+    }
+    select:focus{
+      border-color: rgba(0,160,35,.9);
+      box-shadow: 0 0 0 2px rgba(0,160,35,.25);
+    }
+
+    input[type="text"]{
+      height: 34px;
+      min-width: 200px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,.25);
+      background: #ffffff;
+      color: #111;
+      outline: none;
+    }
+
+    input[type="text"]:focus{
+      border-color: rgba(0,160,35,.9);
+      box-shadow: 0 0 0 2px rgba(0,160,35,.25);
+    }
+
+
+  </style>
+
+  <script>
+    function onBarChanged(value) {
+      selectTabByValue(String(value));
+    }
+
+    function selectTabByValue(value) {
+      var map = { "1":"tab1", "2":"tab2", "3":"tab3" };
+      var tabId = map[value];
+      if (!tabId) return;
+
+      var contents = document.getElementsByClassName("tabcontent");
+      var buttons  = document.getElementsByClassName("tablinks");
+
+      for (var i=0;i<contents.length;i++){
+        contents[i].classList.remove("is-active");
+      }
+      for (var j=0;j<buttons.length;j++){
+        buttons[j].classList.remove("active");
+      }
+
+      document.getElementById(tabId).classList.add("is-active");
+
+      var idx = parseInt(value,10) - 1;
+      if (buttons[idx]) buttons[idx].classList.add("active");
+    }
+
+    function openTab(evt, name, tabValue) {
+      vizrt.payloadhosting.setFieldText("1", tabValue);
+      // optional biar langsung pindah tanpa nunggu callback:
+      selectTabByValue(tabValue);
+    }
+
+    $(document).ready(function() {
+      var pl = vizrt.payloadhosting;
+      pl.initialize();
+
+      pl.setFieldValueCallbacks({
+        "1": onBarChanged
+      });
+
+      // default tampilan kalau callback belum datang
+      selectTabByValue("1");
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="header">
+    <img src="aje.png" alt="logo">
+  </div>
+
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event,'tab1','1')">PAGE 1</button>
+    <button class="tablinks" onclick="openTab(event,'tab2','2')">PAGE 2</button>
+    <button class="tablinks" onclick="openTab(event,'tab3','3')">PAGE 3</button>
+  </div>
+
+  <div id="tab1" class="tabcontent">
+    <div >
+      <div class="row">
+        <label for="jumlahData">Commodities</label>
+        <select name="jumlahData" id="jumlahData">
+          <option value="Commodities">Commodities</option>
+          <option value="COAL">BATU BARA</option>
+          <option value="BRENT">BRENT OIL</option>
+          <option value="CRUDE">WTI OIL</option>
+          <option value="GOLD">EMAS</option>
+          <option value="TIN">TIMAH</option>
+          <option value="NICKEL">NIKEL</option>
+          <option value="PALMOIL">PALM OIL</option>
+          <option value="IRONORE">BIJIH BESI</option>
+          <option value="COPPER">TEMBAGA</option>
+          <option value="SOYBEANS">KEDELAI</option>
+        </select>
+      </div>
+
+      <!-- TEXT FIELD BARU -->
+    <div class="row" style="margin-top:10px;">
+      <label for="titleText">Title</label>
+      <input type="text" id="titleText" placeholder="Judul grafik">
+    </div>
+
+
+    </div>
+  </div>
+
+  <div id="tab2" class="tabcontent">
+    <div>
+      <label>Page 2</label>
+    </div>
+  </div>
+
+  <div id="tab3" class="tabcontent">
+    <div>
+      <label>Page 3</label>
+    </div>
+  </div>
+
+</body>
+</html>

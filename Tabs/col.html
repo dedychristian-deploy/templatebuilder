@@ -1,0 +1,214 @@
+<html>
+<head>
+    <title>Document</title>
+    <!--  JS LIBRARY  -->
+    <script src="payloadhosting.js"></script>
+    <script src="jquery.min.js"></script>
+
+    <link rel="stylesheet" href="mosartTiming.css">
+    <style>
+        body{
+        margin:0;
+        background: #c9c9c9;
+        color: var(--text);
+        font-family: "Open Sans Light", sans-serif;
+        font-size:12px;
+        }
+        /* ===== HEADER ===== */
+        .header{
+        background: #FA9000;
+        height: 90px;
+        display:flex;
+        align-items:center;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--line);
+        }
+        .header img{
+        height: 70px;
+        width:auto;
+        display:block;
+        }
+
+        /* ==== ROW ADN COLUMN ==== */
+        .row {
+        display: flex;
+        margin-bottom: 1px;
+        }
+        .column{
+            flex:1;
+            padding: 4px;
+        }
+
+        /* ==== Beatuty form ==== */
+        .field{
+        display:flex;
+        align-items:center;
+        margin-bottom:10px;
+        }
+
+        .field label{
+        width:90px;
+        margin:0;
+        font-size:14px;
+        }
+
+        .field input,
+        .field select{
+        flex:1;
+        width:100%;
+        padding:6px;
+        border: 1px solid rgba(0,0,0,.25);
+        border-radius: 8px;
+        }
+
+        .main{
+            display: flex;
+            justify-content: flex-start; 
+            align-items: flex-start;
+            gap: 20px;                 
+        }
+        .preview{
+            width: 150px;               
+            flex: 0 0 150px;            
+        }
+        .preview .logo{
+            display:block;
+            width: 100%;
+            height: auto;
+        }
+        .form{
+            flex: 1;
+            max-width: 900px;           
+        }
+        label {
+            padding-right: 20px;
+        }
+
+        .radio-group{
+        display:flex;
+        gap:20px;
+        }
+
+        .radio{
+        display:flex;
+        align-items:center;
+        gap:6px;
+        font-size:14px;
+        }
+
+        .radio input{
+        margin:0;
+        }
+
+            
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="aje.png">
+    </div>
+    <!--
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="column">
+            </div>
+        </div>
+    -->
+
+    <div class="row main">
+
+        <!--  input/preview  -->
+        <div class="column preview">
+            <img src="aje.png" class="logo">
+        </div>
+
+        <!--  form  -->
+        <div class="column form">
+
+            <div class="field">
+                <label>Title</label>
+                <input type="text">
+            </div>
+
+            <div class="field">
+                <label>Title</label>
+                <input type="text">
+            </div>
+
+            <div class="field">
+                <label for="jumlahData">Commodities</label>
+                <select name="jumlahData" id="jumlahData">
+                <option value="Commodities">Commodities</option>
+                <option value="COAL">BATU BARA</option>
+                <option value="BRENT">BRENT OIL</option>
+                <option value="CRUDE">WTI OIL</option>
+                <option value="GOLD">EMAS</option>
+                <option value="TIN">TIMAH</option>
+                <option value="NICKEL">NIKEL</option>
+                <option value="PALMOIL">PALM OIL</option>
+                <option value="IRONORE">BIJIH BESI</option>
+                <option value="COPPER">TEMBAGA</option>
+                <option value="SOYBEANS">KEDELAI</option>
+                </select>
+            </div>
+
+            <div class="field">
+            <label>Mode</label>
+            <div class="radio-group">
+                <label class="radio">
+                <input type="radio" name="mode" value="daily" checked>
+                Daily
+                </label>
+
+                <label class="radio">
+                <input type="radio" name="mode" value="weekly">
+                Weekly
+                </label>
+
+                <label class="radio">
+                <input type="radio" name="mode" value="monthly">
+                Monthly
+                </label>
+            </div>
+            </div>
+
+
+            </div>
+
+
+
+
+    </div>
+</body>
+
+</html>
