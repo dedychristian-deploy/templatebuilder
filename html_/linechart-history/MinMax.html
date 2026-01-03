@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+$(document).ready(function() {
+
+const array  = [91, 109, 54, 11, 43, 6, 67];
+
+function maxMin(array) {
+	
+	let max = array[0];
+	let min = array[0];
+
+	for (let i = 1; i < array.length; ++i) {
+		if (array[i] > max) {
+			max = array[i];	
+		}
+		else if (array[i] < min) {
+			min = array[i];
+		}
+	}
+
+	return {max:max, min:min};
+
+}
+
+	console.log(maxMin(array));
+
+});
+
+			
+		//});
+			</script>
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+	<style>
+		.active {
+			color:#FFAF00!important;
+		}
+
+		#concept {
+			margin-bottom:10px;
+		}
+
+		.svgWrapper {
+			max-height:10px;
+			float:left;
+			margin-right:4px;
+		}
+		#variant span {
+			display: inline-block;
+		    width: 10px;
+		    height: 10px;
+		    background: orange;
+		}
+
+		#grey span {
+			background:grey;
+		}
+	</style>
+</head>
+<body >
+	
+	
+</body>
+</html>

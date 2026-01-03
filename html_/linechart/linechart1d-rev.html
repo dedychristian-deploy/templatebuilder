@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+const url = "http://10.11.6.68:3000/api/summary-live/"; 
+const url_chart = "http://10.11.6.68:3000/api/history/";  
+
+// === AMBIL DATA SUMMARY ===
+function ambilData(value) {
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url + value, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var p2 = vizrt.payloadhosting;
+
+          p2.setFieldText("00-COMPANY", data.stockname);
+          p2.setFieldText("01-PRICE", data.last_price);
+          p2.setFieldText("02-CHANGE", data.net_change);
+          p2.setFieldText("03-PERCENT", data.pct_change);
+        } catch (e) {
+          console.log("❌ Gagal parsing JSON:", e);
+        }
+      }
+    };
+    xhr.send();
+  } catch (err) {
+    console.log("❌ Error ambilData:", err);
+  }
+}
+
+// === AMBIL DATA CHART ===
+function ambilChart(value) {
+  var p2 = vizrt.payloadhosting;
+  console.log("⏳ Fetch chart untuk:", value);
+
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url_chart + value, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+
+          // Gabungkan harga jadi string dipisah '|'
+          var pricesArr = [];
+          for (var i = 0; i < data.length; i++) {
+            pricesArr.push(data[i].price);
+          }
+          var prices = pricesArr.join('|').replace(/\./g, ',');
+          console.log(prices);
+          p2.setFieldText("04", prices);
+
+          // Hitung min & max manual
+          var nums = [];
+          for (var j = 0; j < data.length; j++) {
+            var val = parseFloat(data[j].price);
+            if (!isNaN(val)) nums.push(val);
+          }
+
+          if (nums.length > 0) {
+            var max = nums[0];
+            var min = nums[0];
+            for (var k = 1; k < nums.length; k++) {
+              if (nums[k] > max) max = nums[k];
+              if (nums[k] < min) min = nums[k];
+            }
+
+            p2.setFieldText("06-2", max);
+            p2.setFieldText("06-1", min);
+          }
+        } catch (parseErr) {
+          console.log("❌ Gagal parsing JSON:", parseErr);
+        }
+      }
+    };
+    xhr.send();
+  } catch (err) {
+    console.log("❌ Error ambilChart:", err);
+  }
+}
+
+
+$(document).ready(function () {
+  console.log("Script by: Graphic CNBC INDONESIA-2020");
+
+  var p2 = vizrt.payloadhosting;
+  p2.initialize();
+
+  // Callback jalan tiap kali field CODE berubah
+  //p2.setFieldValueCallbacks({ "CODE": setData });
+
+ $("#field_CODE").on('input', function() {
+  const value = $(this).val().toUpperCase();
+
+  // Buat variabel baru yang bersih dari "/"
+  const cleanValue = value.replace(/\//g, '');
+
+  // Update field dengan versi bersih
+  //$(this).val(cleanValue);
+  console.log("🎯 User ubah CODE:", cleanValue);
+
+  // Kirim ke Vizrt dan fungsi lainnya
+  vizrt.payloadhosting.setFieldText("CODE", value);
+  ambilData(cleanValue);
+  ambilChart(cleanValue);
+});
+
+
+});
+
+
+</script>
+
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+        <label class="control-label"> DATA YANG TAMPIL ADALAH DATA SNAPSHOT UNTUK CURRENT TIME, PERUBAHAN DATA REALTIME AKAN TERLIHAT PADA SAAT ON-AIR </label>
+				<label class="control-label">Ric Code</label>													
+				<input class="input" type="text" id="field_CODE" name="field_CODE">
+	<div class="spacer">
+		<div >														
+		</div>	
+	 	
+
+	
+</body>
+</html>

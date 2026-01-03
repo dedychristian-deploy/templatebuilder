@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+$(document).ready(function() {
+
+let data = [
+    {
+        title: "The Only Guide You Need",
+        score:8,
+        status: "Posted"
+    },
+    {
+        title: "The Advanced Guide To Archive",
+        score:5,
+        status: "Unposted"
+
+    },
+    {
+        title: "In Defense of the Figurative Use of Literally.",
+        score:6,
+        status: "Unposted",
+    },
+    {
+        title: "The Best Ways to Do Market Research For Your Business Plan",
+        score:7,
+        status: "Unposted"
+    },
+    {
+        title: "The Only Guide You Need Part 2",
+        score:8,
+        status: "Unposted"
+    },
+]
+
+
+function foo_json(array) {
+	for (var i=0;i<array.length;i++) {
+		if (array[i].score >= 7 && array[i].status == "Unposted"){
+			array[i].status = "Posted";
+		}
+         }
+	return array;
+}
+	console.log(foo_json(data));	
+
+});
+
+			</script>
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+	<style>
+		.active {
+			color:#FFAF00!important;
+		}
+
+		#concept {
+			margin-bottom:10px;
+		}
+
+		.svgWrapper {
+			max-height:10px;
+			float:left;
+			margin-right:4px;
+		}
+		#variant span {
+			display: inline-block;
+		    width: 10px;
+		    height: 10px;
+		    background: orange;
+		}
+
+		#grey span {
+			background:grey;
+		}
+	</style>
+</head>
+<body >
+	
+	
+</body>
+</html>

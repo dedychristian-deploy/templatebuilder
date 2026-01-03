@@ -1,0 +1,601 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+function onBarChanged(value) {
+	$("#jumlahData").val(value);
+	var jmldat = $("#jumlahData").val();
+	console.log(jmldat);
+
+	for (let j = 0; j < jmldat; j++) {
+		//vizrt.payloadhosting.addListFieldItem("13",j);
+		//vizrt.payloadhosting.setFieldText("13/#" + j + "/Y",data_a[j+1]);
+		$("#row" + (j+1)).show();
+		}
+
+}
+
+function ondataChanged(value){
+	
+	const data_a  = [];
+	data_a[1] = vizrt.payloadhosting.getFieldText("data1");
+	data_a[2] = vizrt.payloadhosting.getFieldText("data2");
+	data_a[3] = vizrt.payloadhosting.getFieldText("data3");
+	data_a[4] = vizrt.payloadhosting.getFieldText("data4");
+	data_a[5] = vizrt.payloadhosting.getFieldText("data5");
+	data_a[6] = vizrt.payloadhosting.getFieldText("data6");
+	data_a[7] = vizrt.payloadhosting.getFieldText("data7");
+	data_a[8] = vizrt.payloadhosting.getFieldText("data8");
+	data_a[9] = vizrt.payloadhosting.getFieldText("data9");
+	data_a[10] = vizrt.payloadhosting.getFieldText("data10");
+	data_a[11] = vizrt.payloadhosting.getFieldText("data11");
+	data_a[12] = vizrt.payloadhosting.getFieldText("data12");
+	data_a[13] = vizrt.payloadhosting.getFieldText("data13");
+
+	var jmldat = $("#jumlahData").val();
+	for (let j = 0; j < jmldat; j++) {
+		//vizrt.payloadhosting.addListFieldItem("13",j);
+		vizrt.payloadhosting.setFieldText("008/#" + j + "/Y",data_a[j+1]);
+		//$("#row" + (j+1)).show();
+		}
+
+		//console.log(jmldat);
+}
+
+function onbulanChanged(value){
+	
+	const bulan_a  = [];
+	bulan_a[1] = vizrt.payloadhosting.getFieldText("bulan1");
+	bulan_a[2] = vizrt.payloadhosting.getFieldText("bulan2");
+	bulan_a[3] = vizrt.payloadhosting.getFieldText("bulan3");
+	bulan_a[4] = vizrt.payloadhosting.getFieldText("bulan4");
+	bulan_a[5] = vizrt.payloadhosting.getFieldText("bulan5");
+	bulan_a[6] = vizrt.payloadhosting.getFieldText("bulan6");
+	bulan_a[7] = vizrt.payloadhosting.getFieldText("bulan7");
+	bulan_a[8] = vizrt.payloadhosting.getFieldText("bulan8");
+	bulan_a[9] = vizrt.payloadhosting.getFieldText("bulan9");
+	bulan_a[10] = vizrt.payloadhosting.getFieldText("bulan10");
+	bulan_a[11] = vizrt.payloadhosting.getFieldText("bulan11");
+	bulan_a[12] = vizrt.payloadhosting.getFieldText("bulan12");
+	bulan_a[13] = vizrt.payloadhosting.getFieldText("bulan13");
+
+	var jmldat = $("#jumlahData").val();
+	for (let j = 0; j < jmldat; j++) {
+		//vizrt.payloadhosting.addListFieldItem("13",j);
+		vizrt.payloadhosting.setFieldText("002/#" + j + "/Y","'" + bulan_a[j+1]);
+		//$("#row" + (j+1)).show();
+		}
+
+		//console.log(jmldat);
+}
+
+function ontahunChanged(value){
+	
+	const tahun_a  = [];
+	tahun_a[1] = vizrt.payloadhosting.getFieldText("tahun1");
+	tahun_a[2] = vizrt.payloadhosting.getFieldText("tahun2");
+	tahun_a[3] = vizrt.payloadhosting.getFieldText("tahun3");
+	tahun_a[4] = vizrt.payloadhosting.getFieldText("tahun4");
+	tahun_a[5] = vizrt.payloadhosting.getFieldText("tahun5");
+	tahun_a[6] = vizrt.payloadhosting.getFieldText("tahun6");
+	tahun_a[7] = vizrt.payloadhosting.getFieldText("tahun7");
+	tahun_a[8] = vizrt.payloadhosting.getFieldText("tahun8");
+	tahun_a[9] = vizrt.payloadhosting.getFieldText("tahun9");
+	tahun_a[10] = vizrt.payloadhosting.getFieldText("tahun10");
+	tahun_a[11] = vizrt.payloadhosting.getFieldText("tahun11");
+	tahun_a[12] = vizrt.payloadhosting.getFieldText("tahun12");
+	tahun_a[13] = vizrt.payloadhosting.getFieldText("tahun13");
+
+	var jmldat = $("#jumlahData").val();
+	for (let j = 0; j < jmldat; j++) {
+		//vizrt.payloadhosting.addListFieldItem("13",j);
+		vizrt.payloadhosting.setFieldText("004/#" + j + "/Y","'" + tahun_a[j+1]);
+		//$("#row" + (j+1)).show();
+		}
+
+		//console.log(jmldat);
+}
+
+
+		function addList(host, jumlahrosw, newrows){
+			const data_a  = [];
+			data_a[1] = host.getFieldText("data1");
+			data_a[2] = host.getFieldText("data2");
+			data_a[3] = host.getFieldText("data3");
+			data_a[4] = host.getFieldText("data4");
+			data_a[5] = host.getFieldText("data5");
+			data_a[6] = host.getFieldText("data6");
+			data_a[7] = host.getFieldText("data7");
+			data_a[8] = host.getFieldText("data8");
+			data_a[9] = host.getFieldText("data9");
+			data_a[10] = host.getFieldText("data10");
+			data_a[11] = host.getFieldText("data11");
+			data_a[12] = host.getFieldText("data12");
+			data_a[13] = host.getFieldText("data13");
+
+			for (let i = -1; i < jumlahrosw-1; i++) {
+			vizrt.payloadhosting.removeListFieldItem("008");
+					}
+			//hide all row
+			for (let i = 1; i < 14; i++) {
+				$("#row" + (i)).hide();
+				}
+			for (let j = 0; j < newrows; j++) {
+			vizrt.payloadhosting.addListFieldItem("008",j);
+			vizrt.payloadhosting.setFieldText("008/#" + j + "/Y",data_a[j+1]);
+			$("#row" + (j+1)).show();
+					}
+		}
+
+		function addBulan(host, jumlahrosw, newrows){
+			const bulan_a  = [];
+			bulan_a[1] = host.getFieldText("bulan1");
+			bulan_a[2] = host.getFieldText("bulan2");
+			bulan_a[3] = host.getFieldText("bulan3");
+			bulan_a[4] = host.getFieldText("bulan4");
+			bulan_a[5] = host.getFieldText("bulan5");
+			bulan_a[6] = host.getFieldText("bulan6");
+			bulan_a[7] = host.getFieldText("bulan7");
+			bulan_a[8] = host.getFieldText("bulan8");
+			bulan_a[9] = host.getFieldText("bulan9");
+			bulan_a[10] = host.getFieldText("bulan10");
+			bulan_a[11] = host.getFieldText("bulan11");
+			bulan_a[12] = host.getFieldText("bulan12");
+			bulan_a[13] = host.getFieldText("bulan13");
+
+			for (let i = -1; i < jumlahrosw-1; i++) {
+			vizrt.payloadhosting.removeListFieldItem("002");
+					}
+			//hide all row
+			for (let i = 1; i < 14; i++) {
+				$("#row" + (i)).hide();
+				}
+			for (let j = 0; j < newrows; j++) {
+			vizrt.payloadhosting.addListFieldItem("002",j);
+			vizrt.payloadhosting.setFieldText("002/#" + j + "/Y","'" + bulan_a[j+1]);
+			$("#row" + (j+1)).show();
+					}
+		}
+
+		function addTahun(host, jumlahrosw, newrows){
+			const tahun_a  = [];
+			tahun_a[1] = host.getFieldText("tahun1");
+			tahun_a[2] = host.getFieldText("tahun2");
+			tahun_a[3] = host.getFieldText("tahun3");
+			tahun_a[4] = host.getFieldText("tahun4");
+			tahun_a[5] = host.getFieldText("tahun5");
+			tahun_a[6] = host.getFieldText("tahun6");
+			tahun_a[7] = host.getFieldText("tahun7");
+			tahun_a[8] = host.getFieldText("tahun8");
+			tahun_a[9] = host.getFieldText("tahun9");
+			tahun_a[10] = host.getFieldText("tahun10");
+			tahun_a[11] = host.getFieldText("tahun11");
+			tahun_a[12] = host.getFieldText("tahun12");
+			tahun_a[13] = host.getFieldText("tahun13");
+
+			for (let i = -1; i < jumlahrosw-1; i++) {
+			vizrt.payloadhosting.removeListFieldItem("004");
+					}
+			//hide all row
+			for (let i = 1; i < 14; i++) {
+				$("#row" + (i)).hide();
+				}
+			for (let j = 0; j < newrows; j++) {
+			vizrt.payloadhosting.addListFieldItem("004",j);
+			vizrt.payloadhosting.setFieldText("004/#" + j + "/Y","'" + tahun_a[j+1]);
+			$("#row" + (j+1)).show();
+					}
+		}
+
+
+		$(document).ready(function() {
+			console.log("Script by: Graphic CNBC INDONESIA-2021");
+			var pl = vizrt.payloadhosting;
+
+            pl.initialize();
+			pl.setFieldValueCallbacks({"jumlahrow": onBarChanged,
+            //pl.setFieldValueCallbacks({ 
+			"data1": ondataChanged, "data2": ondataChanged, "data3": ondataChanged, "data4": ondataChanged, "data5": ondataChanged, "data6": ondataChanged, "data7": ondataChanged, 
+			"data8": ondataChanged, "data9": ondataChanged, "data10": ondataChanged, "data11": ondataChanged, "data12": ondataChanged, "data13": ondataChanged,
+			"bulan1": onbulanChanged, "bulan2": onbulanChanged, "bulan3": onbulanChanged, "bulan4": onbulanChanged, "bulan5": onbulanChanged, "bulan6": onbulanChanged, "bulan7": onbulanChanged, 
+			"bulan8": onbulanChanged, "bulan9": onbulanChanged, "bulan10": onbulanChanged, "bulan11": onbulanChanged, "bulan12": onbulanChanged, "bulan13": onbulanChanged,
+			"tahun1": ontahunChanged, "tahun2": ontahunChanged, "tahun3": ontahunChanged, "tahun4": ontahunChanged, "tahun5": ontahunChanged, "tahun6": ontahunChanged, "tahun7": ontahunChanged, 
+			"tahun8": ontahunChanged, "tahun9": ontahunChanged, "tahun10": ontahunChanged, "tahun11": ontahunChanged, "tahun12": ontahunChanged, "tahun13": ontahunChanged
+			//"jumlahrow": onBarChanged 
+		});
+
+		$("#jumlahData").on('change', function() {
+			
+			vizrt.payloadhosting.setFieldText("jumlahrow", $(this).val());
+			
+			addList(pl, vizrt.payloadhosting.getListFieldLength('008'), $(this).val());
+			addBulan(pl, vizrt.payloadhosting.getListFieldLength('002'), $(this).val());
+			addTahun(pl, vizrt.payloadhosting.getListFieldLength('004'), $(this).val());
+			
+			console.log(0);
+		});
+			
+		});
+			</script>
+	<link type="text/css" rel="stylesheet" href="../styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+
+	<label for="dog-names">JUMLAH DATA:</label>
+	<select name="jumlahData" id="jumlahData" style="background-color: #595C5F; height: 30px; width: 100px;">
+		<option value="2">2 Data</option>
+		<option value="3">3 Data</option>
+		<option value="4">4 Data</option>
+		<option value="5">5 Data</option>
+		<option value="6">6 Data</option>
+		<option value="7">7 Data</option>
+		<option value="8">8 Data</option>
+		<option value="9">9 Data</option>
+		<option value="10">10 Data</option>
+		<option value="11">11 Data</option>
+		<option value="12">12 Data</option>
+		<option value="13">13 Data</option>
+	  </select>
+
+
+	<div class="spacer">
+		<label class="control-label">Data Chart</label>
+		<label class="control-label">TDecimal separator is using comma ( , )</label>
+	</div>		
+	<div class="container">	
+		<div class="row" id="row1" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Data/Value</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data1" name="field_data1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Bulan</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan1" name="field_bulan1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Tahun</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun1" name="field_tahun1" >		
+				</div>			
+			</div>	
+		</div>		
+		<div class="row" id="row2" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data2" name="field_data2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan2" name="field_bulan2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun2" name="field_tahun2" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row3" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data3" name="field_data3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan3" name="field_bulan3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun3" name="field_tahun3" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row4" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data4" name="field_data4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan4" name="field_bulan4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun4" name="field_tahun4" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row5" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data5" name="field_data5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan5" name="field_bulan5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun5" name="field_tahun5" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row6" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data6" name="field_data6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan6" name="field_bulan6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun6" name="field_tahun6" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row7" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data7" name="field_data7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan7" name="field_bulan7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun7" name="field_tahun7" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row8" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data8" name="field_data8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan8" name="field_bulan8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun8" name="field_tahun8" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row9" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data9" name="field_data9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan9" name="field_bulan9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text"id="field_tahun9" name="field_tahun9"  >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row10" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data10" name="field_data10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan10" name="field_bulan10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun10" name="field_tahun10" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row"id="row11" style="display: none" >			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data11" name="field_data11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan11" name="field_bulan11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun11" name="field_tahun11" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row12" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data12" name="field_data12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan12" name="field_bulan12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun12" name="field_tahun12" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row13" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data13" name="field_data13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_bulan13" name="field_bulan13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun13" name="field_tahun13" >		
+				</div>			
+			</div>	
+		</div>
+	</div>	 	
+
+	
+</body>
+</html>

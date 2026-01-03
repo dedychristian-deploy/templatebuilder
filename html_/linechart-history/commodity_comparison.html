@@ -1,0 +1,1178 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+function onBarChanged(value) {
+	$("#jumlahData").val(value);
+	//var jmldat = $("#jumlahData").val();
+
+}
+
+function onBarChanged2(value) {
+	$("#jumlahData2").val(value);
+	//var jmldat = $("#jumlahData").val();
+
+}
+
+function clearActiveVariant() {
+	$("#ranges .btn").removeClass("active");
+}
+
+function clearActiveVariant2() {
+	$("#ranges2 .btn").removeClass("active");
+}
+
+//=================================ONCOMPARISON 04=================================
+function onComparison(value) {
+
+	//MINMAX
+	const data_a  = [];
+	//data_a[1] = vizrt.payloadhosting.getFieldText("04");
+	//data_a[2] = vizrt.payloadhosting.getFieldText("04");
+
+	//ata_a[3] = data_a[1] + "|" + data_a[2] 
+
+	data_a[1] = vizrt.payloadhosting.getFieldText("006point1");
+	data_a[2] = vizrt.payloadhosting.getFieldText("006point2");
+
+	if (data_a[1] > data_a[2]) {
+			vizrt.payloadhosting.setFieldText("00-comp", 0);			
+		}
+		else if (data_a[1] < data_a[2]) {
+			vizrt.payloadhosting.setFieldText("00-comp", 1);
+		}
+		else {
+			vizrt.payloadhosting.setFieldText("00-comp", 0);
+		}
+
+	
+
+	console.log(data_a[1]);
+}
+
+
+
+
+
+function onVariantChange(value) {
+	
+	if (value == "3M" && !$("#btn_3M").hasClass("active") ) {
+	  	clearActiveVariant();
+		$("#btn_3M").addClass("active");
+		console.log(value);
+
+		//vizrt.payloadhosting.setFieldText("00", "3M");
+
+		//BACA DATA UPDATE
+	} else if (value == "6M" && !$("#btn_6M").hasClass("active")) {
+	  	clearActiveVariant();
+		$("#btn_6M").addClass("active");
+
+		//vizrt.payloadhosting.setFieldText("00", "6M");
+	} 
+
+ else if (value == "1Y" && !$("#btn_1Y").hasClass("active")) {
+	  	clearActiveVariant();
+		  $("#btn_1Y").addClass("active");
+
+		  //vizrt.payloadhosting.setFieldText("00", "IY");
+	}
+
+	
+}
+
+//============================VARIANN CHAGE 2================================//
+function onVariantChange2(value) {
+	
+	if (value == "3M" && !$("#btn_3M2").hasClass("active") ) {
+	  	clearActiveVariant2();
+		$("#btn_3M2").addClass("active");
+		console.log(value);
+
+		//vizrt.payloadhosting.setFieldText("00", "3M");
+
+		//BACA DATA UPDATE
+	} else if (value == "6M" && !$("#btn_6M2").hasClass("active")) {
+	  	clearActiveVariant2();
+		$("#btn_6M2").addClass("active");
+
+		//vizrt.payloadhosting.setFieldText("00", "6M");
+	} 
+
+ else if (value == "1Y" && !$("#btn_1Y2").hasClass("active")) {
+	  	clearActiveVariant2();
+		  $("#btn_1Y2").addClass("active");
+
+		  //vizrt.payloadhosting.setFieldText("00", "IY");
+	}
+
+	
+}
+
+function timeSettings(value) {
+	const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+	var today = new Date();
+	const d =  new Date();
+
+	var date = today.getDate();
+
+	var months = bulan[d.getMonth()];
+
+	//var months3 = today.setMonth(today.getMonth() - 3);
+	//var months3ago = today.toLocaleString('default', { month: 'short' })
+
+
+
+	
+	
+	if (value == "3M"  ) {
+
+		//const d = new Date();
+		const month = d.getMonth();
+		d.setMonth(d.getMonth() - 3);
+		while (d.getMonth() === month) {
+			d.setDate(d.getDate() - 3);
+		}
+
+		let mth = bulan[d.getMonth()];
+
+		vizrt.payloadhosting.setFieldText("07-time1", date + " " + mth + "\n" + d.getFullYear());
+		vizrt.payloadhosting.setFieldText("07-time2", date + " " + months + "\n" + today.getFullYear());
+
+		//BACA DATA UPDATE
+	} else if (value == "6M") {
+
+		//const d = new Date();
+		const month = d.getMonth();
+		d.setMonth(d.getMonth() - 6);
+		while (d.getMonth() === month) {
+			d.setDate(d.getDate() - 6);
+		}
+
+		let mth = bulan[d.getMonth()];
+		vizrt.payloadhosting.setFieldText("07-time1", date + " " + mth + "\n" + d.getFullYear());
+		vizrt.payloadhosting.setFieldText("07-time2", date + " " + months + "\n" + today.getFullYear());
+	} 
+
+	else if (value == "1Y" ) {
+
+		
+
+			//today.setFullYear(startDate.getFullYear() - 1);
+
+			vizrt.payloadhosting.setFieldText("07-time1", date + " " + months + "\n" + (d.getFullYear() - 1));
+			vizrt.payloadhosting.setFieldText("07-time2", date + " " + months + "\n" + today.getFullYear());
+		}
+
+	
+}
+
+// Will be called when the field with id "choice" changes
+function onBarsChanged(value) {
+//var myField = $("#myfield");
+	//myField.text(value);
+	//var conceptValue = $(this).data("text");
+
+	if (value == "F") {
+	//vizrt.payloadhosting.setFieldVisibility("A1", true);
+	//vizrt.payloadhosting.setFieldVisibility("02-PENAMBAHAN-KASUS", false);
+//	vizrt.payloadhosting.setFieldText("choice2", "FULLFRAME");
+	//vizrt.payloadhosting.setFieldText("-vizlayer-FF_X", "FF_BARCHART_GENERICS_LABEL14");
+	//vizrt.payloadhosting.setFieldVisibility("A3", false);
+//=====================================================//
+	//vizrt.payloadhosting.setFieldVisibility("Q1", true);
+	//vizrt.payloadhosting.setFieldVisibility("Q2", false);
+	//vizrt.payloadhosting.setFieldVisibility("Q3", false);
+
+	//pl.setFieldText("text", "IMMERSIVE_INSTA_1TANYA");
+
+// pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO1_QUEST_OK");
+} 
+
+if (value == "S") {
+	//vizrt.payloadhosting.setFieldVisibility("A1", true);
+	//vizrt.payloadhosting.setFieldVisibility("02-PENAMBAHAN-KASUS", true);
+	//vizrt.payloadhosting.setFieldVisibility("A3", false);
+//=====================================================//
+	//vizrt.payloadhosting.setFieldVisibility("Q1", true);
+	//vizrt.payloadhosting.setFieldVisibility("Q2", false);
+	//vizrt.payloadhosting.setFieldVisibility("Q3", false);
+
+	//pl.setFieldText("text", "IMMERSIVE_INSTA_1TANYA");
+	//vizrt.payloadhosting.setFieldText("choice2", "SPLIT");
+//	vizrt.payloadhosting.setFieldText("-vizlayer-FF_X", "FF_SPLIT_BARCHART_GENERICS_LABEL16");
+// pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO1_QUEST_OK");
+} 
+	}
+
+function ondataChanged(value){
+	
+	const data_a  = [];
+	data_a[1] = vizrt.payloadhosting.getFieldText("data1");
+	data_a[2] = vizrt.payloadhosting.getFieldText("data2");
+	data_a[3] = vizrt.payloadhosting.getFieldText("data3");
+	data_a[4] = vizrt.payloadhosting.getFieldText("data4");
+	data_a[5] = vizrt.payloadhosting.getFieldText("data5");
+	data_a[6] = vizrt.payloadhosting.getFieldText("data6");
+	data_a[7] = vizrt.payloadhosting.getFieldText("data7");
+	data_a[8] = vizrt.payloadhosting.getFieldText("data8");
+	data_a[9] = vizrt.payloadhosting.getFieldText("data9");
+	data_a[10] = vizrt.payloadhosting.getFieldText("data10");
+	data_a[11] = vizrt.payloadhosting.getFieldText("data11");
+	data_a[12] = vizrt.payloadhosting.getFieldText("data12");
+	data_a[13] = vizrt.payloadhosting.getFieldText("data13");
+
+	var jmldat = $("#jumlahData").val();
+	for (let j = 0; j < jmldat; j++) {
+		//vizrt.payloadhosting.addListFieldItem("13",j);
+		vizrt.payloadhosting.setFieldText("13/#" + j + "/Y",data_a[j+1]);
+		//$("#row" + (j+1)).show();
+		}
+
+		//console.log(jmldat);
+}
+
+function onlabelChanged(value){
+
+}
+
+function onNormalize(value){
+	var data_04 = vizrt.payloadhosting.getFieldText("dummy2");
+	var out;
+	out = document.getElementById("field_04").innerHTML;
+	
+    //vizrt.payloadhosting.setFieldText("dummy",  data_04 +  "|"+ vizrt.payloadhosting.getFieldText("006"));
+
+	const myString = data_04.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point1").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy", data_04 +  num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy", data_04 + "|"+ num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	console.log(value);
+}
+
+//===========================================================================//
+
+function onNormalize3(value){
+	var data_04 = vizrt.payloadhosting.getFieldText("dummy4");
+	var out;
+	out = document.getElementById("field_040").innerHTML;
+	
+    //vizrt.payloadhosting.setFieldText("dummy",  data_04 +  "|"+ vizrt.payloadhosting.getFieldText("006"));
+
+	const myString = data_04.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point2").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy3", data_04 +  num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy3", data_04 + "|"+ num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	console.log(value);
+}
+
+//=========================================================================//
+
+function onNormalize2(value){
+    vizrt.payloadhosting.setFieldText("04",  value);
+}
+
+function onNormalize4(value){
+    vizrt.payloadhosting.setFieldText("040",  value);
+}
+
+function satuan(value){
+
+	if (value == "COAL") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/T)");
+	}
+	else if (value == "BRENT") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/BAREL)");
+	}
+	else if (value == "CRUDE") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/BAREL)");
+	}
+	else if (value == "GOLD") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/t.oz)");
+	}
+	else if (value == "TIN") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/T)");
+	}
+	else if (value == "NICKEL") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/T)");
+	}
+	else if (value == "PALMOIL") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(MYR/T)");
+	}
+	else if (value == "IRONORE") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/T)");
+	}
+	else if (value == "COPPER") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/Lbs)");
+	}
+	else if (value == "SOYBEANS") {
+		vizrt.payloadhosting.setFieldText("002-SATUAN",  "(USD/Bu)");
+	}
+
+	else {
+		//vizrt.payloadhosting.setFieldText("002-SATUAN",  value);
+	}
+	
+}
+
+
+function addList(host, jumlahrosw, newrows){
+		const data_a  = [];
+		data_a[1] = host.getFieldText("data1");
+		data_a[2] = host.getFieldText("data2");
+		data_a[3] = host.getFieldText("data3");
+		data_a[4] = host.getFieldText("data4");
+		data_a[5] = host.getFieldText("data5");
+		data_a[6] = host.getFieldText("data6");
+		data_a[7] = host.getFieldText("data7");
+		data_a[8] = host.getFieldText("data8");
+		data_a[9] = host.getFieldText("data9");
+		data_a[10] = host.getFieldText("data10");
+		data_a[11] = host.getFieldText("data11");
+		data_a[12] = host.getFieldText("data12");
+		data_a[13] = host.getFieldText("data13");
+
+		for (let i = -1; i < jumlahrosw-1; i++) {
+		vizrt.payloadhosting.removeListFieldItem("13");
+				}
+		//hide all row
+		for (let i = 1; i < 14; i++) {
+			$("#row" + (i)).hide();
+			}
+		for (let j = 0; j < newrows; j++) {
+		vizrt.payloadhosting.addListFieldItem("13",j);
+		vizrt.payloadhosting.setFieldText("13/#" + j + "/Y",data_a[j+1]);
+		$("#row" + (j+1)).show();
+				}
+}
+
+function formatThousand(numvalue, prefix){
+	var number_string = numvalue.replace(/[^,\d]/g, '').toString(),
+	split   		= number_string.split(','),
+	sisa     		= split[0].length % 3,
+	thousand_val     		= split[0].substr(0, sisa),
+	thousand     		= split[0].substr(sisa).match(/\d{3}/gi);
+ 
+	// tambahkan titik jika yang di input sudah menjadi numvalue thousand
+	if(thousand){
+		separator = sisa ? '.' : '';
+		thousand_val += separator + thousand.join('.');
+	}
+ 
+	thousand_val = split[1] != undefined ? thousand_val + ',' + split[1] : thousand_val;
+	return prefix == undefined ? thousand_val : (thousand_val ? '' + thousand_val : '');
+}
+
+//===========================================FUNCTION1====================================================//
+function myFunction(arr) {
+    var out = arr;
+    document.getElementById("field_04").innerHTML = out;
+
+	//vizrt.payloadhosting.setFieldText("04", out);
+	const myString = out.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point1").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy", out +  num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy", out + "|"+ num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	//Fill Las Value to Last Point
+
+	var string = out;
+	var array = string.split("|");
+	//alert(array.length);
+	
+
+	var arr_last = array[array.length - 1];
+
+	if (arr_last == "") {
+		//vizrt.payloadhosting.setFieldText("dummy", out +  num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+		arr_last = array[array.length - 2];
+		console.log(arr_last);
+		//parseFloat("7800089.89").toLocaleString('en')
+		vizrt.payloadhosting.setFieldText("006point1", formatThousand(arr_last));
+	}
+
+	else {
+		console.log(arr_last);
+		vizrt.payloadhosting.setFieldText("006point1", formatThousand(arr_last));
+	}
+
+
+}
+
+//===========================================FUNCTION2====================================================//
+function myFunction2(arr) {
+    var out = arr;
+    document.getElementById("field_040").innerHTML = out;
+
+	//vizrt.payloadhosting.setFieldText("04", out);
+	const myString = out.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point2").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy3", out +  num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy4", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy3", out + "|"+ num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy4", out);
+	}
+
+	//Fill Las Value to Last Point
+
+	var string = out;
+	var array = string.split("|");
+	//alert(array.length);
+	
+
+	var arr_last = array[array.length - 1];
+
+	if (arr_last == "") {
+		//vizrt.payloadhosting.setFieldText("dummy", out +  num_a[1]);	
+		//vizrt.payloadhosting.setFieldText("dummy2", out);
+		arr_last = array[array.length - 2];
+		console.log(arr_last);
+		//parseFloat("7800089.89").toLocaleString('en')
+		vizrt.payloadhosting.setFieldText("006point2", formatThousand(arr_last));
+	}
+
+	else {
+		console.log(arr_last);
+		vizrt.payloadhosting.setFieldText("006point2", formatThousand(arr_last));
+	}
+
+
+}
+
+function myFunctionButton(arr) {
+    var out = arr;
+    document.getElementById("field_04").innerHTML = out;
+
+	//vizrt.payloadhosting.setFieldText("04", out);
+	const myString = out.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point1").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy", out +  num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy", out + "|"+ num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy2", out);
+	}
+
+}
+
+
+//====================================================================================//
+
+
+function myFunctionButton2(arr) {
+    var out = arr;
+    document.getElementById("field_040").innerHTML = out;
+
+	//vizrt.payloadhosting.setFieldText("04", out);
+	const myString = out.toString();
+	const stringLength = myString.length; // this will be 16
+	console.log('lastChar: ', myString.charAt(stringLength - 1)); // this will be the string
+	const str_last = myString.charAt(stringLength - 1);
+
+
+	//Replace (.) with blank
+	const num_a  = [];
+	num_a[1] = vizrt.payloadhosting.getFieldText("006point2").replace(/\./g, '');
+
+	if (str_last == "|") {
+		vizrt.payloadhosting.setFieldText("dummy3", out +  num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy4", out);
+	}
+
+	else {
+		vizrt.payloadhosting.setFieldText("dummy3", out + "|"+ num_a[1]);	
+		vizrt.payloadhosting.setFieldText("dummy4", out);
+	}
+
+}
+
+$(document).ready(function() {
+
+			//grey = $("#btn_1Y");
+			//orange = $("#orange");
+
+			console.log("Script by: Graphic CNBC INDONESIA-2021");
+			var pl = vizrt.payloadhosting;
+
+			pl.initialize();
+            pl.setFieldValueCallbacks({"com": onBarChanged, "range": onVariantChange, "006point1": onNormalize, "dummy": onNormalize2,
+			"com2": onBarChanged2, "range2": onVariantChange2, "006point2": onNormalize3, "dummy3": onNormalize4
+			//,
+			//"04": onComparison, "040": onComparison
+
+		});
+
+		$("#jumlahData").on('change', function() {
+
+			vizrt.payloadhosting.setFieldText("com", $(this).val());
+			console.log("myArr");
+
+			//Setlabel
+
+			if ($(this).val() == "BRENT") {
+				vizrt.payloadhosting.setFieldText("00-ket1",  "BRENT OIL");
+			}
+			else if ($(this).val() == "CRUDE") {
+				vizrt.payloadhosting.setFieldText("00-ket1",  "CRUDE OIL");
+			}
+
+			//var main_url = "http://10.11.6.102/customtemplate/data/commodity/";
+			var main_url ="http://127.0.0.1/text_json_converted/Commodity/";
+
+			var xmlhttp = new XMLHttpRequest();
+			var url = main_url + vizrt.payloadhosting.getFieldText("range") + $(this).val() + ".txt";
+
+			satuan($(this).val());
+			
+			timeSettings(vizrt.payloadhosting.getFieldText("range"));
+
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = this.responseText;
+					myFunction(myArr);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+			
+		});
+
+		$("#jumlahData2").on('change', function() {
+
+			vizrt.payloadhosting.setFieldText("com2", $(this).val());
+			console.log("myArr");
+
+			//Setlabel
+
+			if ($(this).val() == "BRENT") {
+				vizrt.payloadhosting.setFieldText("00-ket2",  "BRENT OIL");
+			}
+			else if ($(this).val() == "CRUDE") {
+				vizrt.payloadhosting.setFieldText("00-ket2",  "CRUDE OIL");
+			}
+
+			//var main_url = "http://10.11.6.102/customtemplate/data/commodity/";
+			var main_url ="http://127.0.0.1/text_json_converted/Commodity/";
+
+			var xmlhttp = new XMLHttpRequest();
+			var url = main_url + vizrt.payloadhosting.getFieldText("range2") + $(this).val() + ".txt";
+
+			satuan($(this).val());
+
+			timeSettings(vizrt.payloadhosting.getFieldText("range2"));
+
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = this.responseText;
+					myFunction2(myArr);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+		});
+
+		$("#ranges .btn").on("click", function() {
+			pl.setFieldText("range", $(this).text());
+			clearActiveVariant();
+			$(this).addClass("active");
+
+			var main_url = "http://10.11.6.102/customtemplate/data/commodity/";
+			//var main_url ="http://127.0.0.1/text_json_converted/Commodity/";
+
+			var xmlhttp = new XMLHttpRequest();
+			var url = main_url + $(this).text() + vizrt.payloadhosting.getFieldText("com") + ".txt";
+
+			//vizrt.payloadhosting.setFieldText("com", $(this).val());
+			timeSettings($(this).text());
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = this.responseText;
+					myFunctionButton(myArr);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+
+
+
+		});
+
+		$("#ranges2 .btn").on("click", function() {
+			pl.setFieldText("range2", $(this).text());
+			clearActiveVariant2();
+			$(this).addClass("active");
+
+			var main_url = "http://10.11.6.102/customtemplate/data/commodity/";
+			//var main_url ="http://127.0.0.1/text_json_converted/Commodity/";
+
+			var xmlhttp = new XMLHttpRequest();
+			var url = main_url + $(this).text() + vizrt.payloadhosting.getFieldText("com2") + ".txt";
+
+			//vizrt.payloadhosting.setFieldText("com", $(this).val());
+			//timeSettings($(this).text());
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = this.responseText;
+					myFunctionButton2(myArr);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+
+
+
+		});
+
+
+			
+		});
+			</script>
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+	<style>
+		.active {
+			color:#FFAF00!important;
+		}
+
+		#concept {
+			margin-bottom:10px;
+		}
+
+		.svgWrapper {
+			max-height:10px;
+			float:left;
+			margin-right:4px;
+		}
+		#variant span {
+			display: inline-block;
+		    width: 10px;
+		    height: 10px;
+		    background: orange;
+		}
+
+		#grey span {
+			background:grey;
+		}
+	</style>
+</head>
+<body onload="vizrt.payloadhosting.initialize()">
+	<div ></div>
+	<label for="dog-names">Commodities:</label>
+	<select name="jumlahData" id="jumlahData" style="background-color: #595C5F; height: 30px; width: 100px;">
+		<option value="Commodities">Commodities</option>
+		<!--
+        <option value="http://10.11.6.102/customtemplate/data/commodity/COAL.txt">BATU BARA</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/CO1.txt">Brent OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/CL1.txt">WTI OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/GOLD.txt">EMAS</option>
+        <option value="http://10.11.6.102/customtemplate/data/commodity/TIN.txt">TIMAH</option>
+        <option value="http://10.11.6.102/customtemplate/data/commodity/NICKEL.txt">NIKEL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/PALM.txt">PALM OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/3MSOYBEANS.txt">KEDELAI</option>
+		-->
+
+		<option value="BRENT">BRENT OIL</option>
+		<option value="CRUDE">WTI OIL</option>
+		<!--<option value="COAL">BATU BARA</option>
+		<option value="GOLD">EMAS</option>
+        <option value="TIN">TIMAH</option>
+        <option value="NICKEL">NIKEL</option>
+		<option value="PALMOIL">PALM OIL</option>
+		<option value="IRONORE">BIJIH BESI</option>
+		<option value="COPPER">TEMBAGA</option>
+		<option value="SOYBEANS">KEDELAI</option>-->
+
+	  </select>
+	</div>
+
+	<div ></div>
+	  <label for="dog-names">Range:</label>
+	  
+	  <div id="ranges" class="btn-group-sm" role="group">
+		<button type="button" id="btn_3M" class="btn btn-default"><span></span>3M</button>
+		<button type="button" id="btn_6M" class="btn btn-default"><span></span>6M</button>
+		<button type="button" id="btn_1Y" class="btn btn-default"><span></span>1Y</button>
+	  </div>
+	</div>
+
+	<!--   ====================================================================================================  -->
+	<div ></div>
+	<label></label>
+	<div ></div>
+	<label for="dog-names">Commodities:</label>
+	<select name="jumlahData2" id="jumlahData2" style="background-color: #595C5F; height: 30px; width: 100px;">
+		<option value="Commodities">Commodities</option>
+		<!--
+        <option value="http://10.11.6.102/customtemplate/data/commodity/COAL.txt">BATU BARA</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/CO1.txt">Brent OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/CL1.txt">WTI OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/GOLD.txt">EMAS</option>
+        <option value="http://10.11.6.102/customtemplate/data/commodity/TIN.txt">TIMAH</option>
+        <option value="http://10.11.6.102/customtemplate/data/commodity/NICKEL.txt">NIKEL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/PALM.txt">PALM OIL</option>
+		<option value="http://10.11.6.102/customtemplate/data/commodity/3MSOYBEANS.txt">KEDELAI</option>
+		-->
+
+		
+		<option value="BRENT">BRENT OIL</option>
+		<option value="CRUDE">WTI OIL</option>
+		<!--<option value="COAL">BATU BARA</option>
+		<option value="GOLD">EMAS</option>
+        <option value="TIN">TIMAH</option>
+        <option value="NICKEL">NIKEL</option>
+		<option value="PALMOIL">PALM OIL</option>
+		<option value="IRONORE">BIJIH BESI</option>
+		<option value="COPPER">TEMBAGA</option>
+		<option value="SOYBEANS">KEDELAI</option>-->
+
+	  </select>
+	</div>
+
+	<div ></div>
+	  <label for="dog-names">Range:</label>
+	  
+	  <div id="ranges2" class="btn-group-sm" role="group">
+		<button type="button" id="btn_3M2" class="btn btn-default"><span></span>3M</button>
+		<button type="button" id="btn_6M2" class="btn btn-default"><span></span>6M</button>
+		<button type="button" id="btn_1Y2" class="btn btn-default"><span></span>1Y</button>
+	  </div>
+	</div>
+
+
+	<div class="spacer">
+		<div id="field_04" name="field_04" ></div>
+	</div>	
+
+	<div class="spacer">
+		<div id="field_040" name="field_040" ></div>
+	</div>
+
+	<div class="container">	
+		<div class="row" id="row1" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Data/Value</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data1" name="field_data1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label">Category</label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label1" name="field_label1" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label">Tahun</label>
+				</div>		
+				<div>														
+					<input class="input" type="text" id="field_tahun1" name="field_tahun1" >		
+				</div>			
+			</div>	
+		</div>		
+		<div class="row" id="row2" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data2" name="field_data2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" >	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label2" name="field_label2" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun2" name="field_tahun2" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row3" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data3" name="field_data3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label3" name="field_label3" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun3" name="field_tahun3" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row4" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data4" name="field_data4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label4" name="field_label4" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun4" name="field_tahun4" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row5" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data5" name="field_data5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label5" name="field_label5" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun5" name="field_tahun5" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row6" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data6" name="field_data6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label6" name="field_label6" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun6" name="field_tahun6" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row7" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data7" name="field_data7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label7" name="field_label7" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun7" name="field_tahun7" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row8" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data8" name="field_data8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label8" name="field_label8" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun8" name="field_tahun8" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row9" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data9" name="field_data9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label9" name="field_label9" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text"id="field_tahun9" name="field_tahun9"  >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row10" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data10" name="field_data10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label10" name="field_label10" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun10" name="field_tahun10" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row"id="row11" style="display: none" >			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data11" name="field_data11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label11" name="field_label11" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun11" name="field_tahun11" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row12" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data12" name="field_data12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label12" name="field_label12" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun12" name="field_tahun12" >		
+				</div>			
+			</div>	
+		</div>
+		<div class="row" id="row13" style="display: none">			
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_data13" name="field_data13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_label13" name="field_label13" >		
+				</div>		
+			</div>				
+			<div class="col-xs-4" style="display: none">	
+				<div >														
+					<label class="control-label"> </label>
+				</div>		
+				<div >														
+					<input class="input" type="text" id="field_tahun13" name="field_tahun13" >		
+				</div>			
+			</div>	
+		</div>
+	</div>	 	
+
+	
+</body>
+</html>
