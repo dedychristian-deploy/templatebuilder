@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    
+    <script src="bootstrap-slider.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!--<script src='spectrum.js'></script>
+    <script src='jquery.connections.js'></script>-->
+    <script src="payloadhosting.js"></script>
+    <script>
+$(document).ready(function () {
+    console.log("Script by: Graphic CNBC INDONESIA-2021");
+// Handle change on the dropdown
+$("#ddlselect").on('change', function () {
+  
+  var d = document.getElementById("ddlselect");
+  var displaytext = d.options[d.selectedIndex].text;
+  document.getElementById("txtvalue").value=displaytext;
+  vizrt.payloadhosting.setFieldText("A1" , displaytext);
+
+});
+    // Will be called when the field with id "choice" changes
+function onBarChanged(value) {
+  //var myField = $("#myfield");
+     //myField.text(value);
+    //var conceptValue = $(this).data("text");
+
+     if (value == "0") {
+    vizrt.payloadhosting.setFieldVisibility("A1", true);
+    vizrt.payloadhosting.setFieldVisibility("A2", false);
+    vizrt.payloadhosting.setFieldVisibility("A3", false);
+  //=====================================================//
+    vizrt.payloadhosting.setFieldVisibility("Q1", true);
+    vizrt.payloadhosting.setFieldVisibility("Q2", false);
+    vizrt.payloadhosting.setFieldVisibility("Q3", false);
+
+    pl.setFieldText("text", "IMMERSIVE_INSTA_1TANYA");
+
+    pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO1_QUEST_OK");
+  } 
+  else if (value == "1") {
+    vizrt.payloadhosting.setFieldVisibility("A1", true);
+    vizrt.payloadhosting.setFieldVisibility("A2", true);
+    vizrt.payloadhosting.setFieldVisibility("A3", false);
+  //=====================================================//
+    vizrt.payloadhosting.setFieldVisibility("Q1", true);
+    vizrt.payloadhosting.setFieldVisibility("Q2", true);
+    vizrt.payloadhosting.setFieldVisibility("Q3", false);
+
+    pl.setFieldText("text", "IMMERSIVE_INSTA_2TANYA");
+
+    pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO2_QUEST_OK");
+  } 
+
+  else if (value == "2") {
+    vizrt.payloadhosting.setFieldVisibility("A1", true);
+    vizrt.payloadhosting.setFieldVisibility("A2", true);
+    vizrt.payloadhosting.setFieldVisibility("A3", true);
+  //=====================================================//
+    vizrt.payloadhosting.setFieldVisibility("Q1", true);
+    vizrt.payloadhosting.setFieldVisibility("Q2", true);
+    vizrt.payloadhosting.setFieldVisibility("Q3", true);
+
+    pl.setFieldText("text", "IMMERSIVE_INSTA_3TANYA");
+
+    pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO3_QUEST_OK");
+  } 
+  else {
+    vizrt.payloadhosting.setFieldVisibility("A1", true);
+    vizrt.payloadhosting.setFieldVisibility("A2", false);
+    vizrt.payloadhosting.setFieldVisibility("A3", false);
+  //=====================================================//
+    vizrt.payloadhosting.setFieldVisibility("Q1", true);
+    vizrt.payloadhosting.setFieldVisibility("Q2", false);
+    vizrt.payloadhosting.setFieldVisibility("Q3", false);
+
+    pl.setFieldText("-vizlayer-IMMERSIVE4", "IMMERSIVE_SMARTPHONE_OPPO1_QUEST_OK");
+}
+    }
+
+var pl = vizrt.payloadhosting;
+pl.initialize();
+pl.setFieldValueCallbacks({ "choice": onBarChanged });
+});
+
+    </script>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <!--<link rel='stylesheet' href='spectrum.css'>
+    <link rel="stylesheet" href="text_template.css" type="text/css">-->
+    <link rel="stylesheet" href="bootstrap-slider.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+ 
+    <style>
+
+    </style>
+  </head>
+  
+  <body onload="vizrt.payloadhosting.initialize()">
+    
+    <!--<input name="field_topic" type="text" id="field_topic" readonly="true">
+    <label for="field_topic">My input field:</label>
+    <span id="myfield" class="sample red">My custom 50 field-->
+    <select id="ddlselect" style="color:rgb(0,0,255);">
+      <option >-- Select Stocks --</option>
+      <option>IHSG</option>
+      <option>DOW</option>
+    </select>
+
+    <input type="text" id="txtvalue"/>
+</body>
+
+</html>

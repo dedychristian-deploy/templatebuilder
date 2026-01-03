@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Chart</title>	
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <script src="payloadhosting.js"></script>    
+	<script src="bootstrap.min.js"></script>
+	
+	<script>
+
+
+
+function onLabelChanged(value){
+	//vizrt.payloadhosting.setFieldText("txt01", vizrt.payloadhosting.getFieldText("data1"));
+	//vizrt.payloadhosting.setFieldText("txt02", val2);
+	var val = value;
+	if (val.length <= 0) {
+	vizrt.payloadhosting.setFieldText("01-choicebullet", "0");
+	} 
+	else {
+	vizrt.payloadhosting.setFieldText("01-choicebullet", "1");
+	} 
+
+	console.log(val.length);
+
+}
+
+		$(document).ready(function() {
+			console.log("Script by: Graphic CNBC INDONESIA-2021");
+			var pl = vizrt.payloadhosting;
+
+			pl.initialize();
+            pl.setFieldValueCallbacks({ "01-BULLET5": onLabelChanged
+		});
+			
+		});
+			</script>
+	<link type="text/css" rel="stylesheet" href="../styles.css">
+	<link type="text/css" rel="stylesheet" href="mosartTiming.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		textarea {
+		 background-color: #60656a;
+		 color: white;
+		 border: 0.3px solid black;
+		 resize: none;
+		}
+		</style>
+	
+	
+	</head>
+<body onload="vizrt.payloadhosting.initialize()">
+	 	
+
+	
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    
+    <script src="bootstrap-slider.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!--<script src='spectrum.js'></script>
+    <script src='jquery.connections.js'></script>-->
+    <script src="payloadhosting.js"></script>
+    <script>
+$(document).ready(function () {
+    console.log("Script by: Graphic CNBC INDONESIA-2020");
+    var prefix = "(";
+    var suffix = ")";
+    // Will be called when the field with id "choice" changes
+function onKasusPositifChanged(value) {
+    p2.setFieldText("02-PENAMBAHAN-KASUS", prefix + value + suffix);
+    }
+function onKasusSembuhChanged(value) {
+    p2.setFieldText("04-PENAMBAHAN-PASIEN-SEMBUH", prefix + value + suffix);
+    }
+function onKasusMeninggalChanged(value) {
+    p2.setFieldText("06-PENAMBAHAN-KASUS-MENINGGAL", prefix + value + suffix);
+    }
+
+var p2 = vizrt.payloadhosting;
+p2.initialize();
+p2.setFieldValueCallbacks({ "kasus-positif": onKasusPositifChanged , "kasus-sembuh": onKasusSembuhChanged , "kasus-meninggal": onKasusMeninggalChanged});
+//p2.setFieldValueCallbacks({ "kasus-sembuh1": onKasusSembuhChanged });
+//p2.setFieldValueCallbacks({ "kasus-meninggal1": onKasusMeninggalChanged });
+});
+
+    </script>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <!--<link rel='stylesheet' href='spectrum.css'>
+    <link rel="stylesheet" href="text_template.css" type="text/css">-->
+    <link rel="stylesheet" href="bootstrap-slider.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <style>
+
+    </style>
+  </head>
+  
+  <body onload="vizrt.payloadhosting.initialize()">
+    
+    <!--<input name="field_topic" type="text" id="field_topic" readonly="true">
+    <label for="field_topic">My input field:</label>
+      <span id="myfield" class="sample red">My custom 50 field-->
+</body>
+
+</html>

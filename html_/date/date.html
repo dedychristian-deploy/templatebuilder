@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    
+    <script src="bootstrap-slider.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!--<script src='spectrum.js'></script>
+    <script src='jquery.connections.js'></script>-->
+    <script src="payloadhosting.js"></script>
+    <script>
+	
+	var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = dd+''+mm;
+$(document).ready(function () {
+
+
+
+
+    console.log("Script by: Graphic CNBC INDONESIA-2020");
+    var prefix = "(";
+    var suffix = ")";
+    // Will be called when the field with id "choice" changes
+function onKasusPositifChanged(value) {
+    //p2.setFieldText("dates", prefix + value + suffix);
+	p2.setFieldText("dates", today);
+}
+
+var p2 = vizrt.payloadhosting;
+p2.initialize();
+p2.setFieldValueCallbacks({ "1": onKasusPositifChanged});
+//p2.setFieldValueCallbacks({ "kasus-sembuh1": onKasusSembuhChanged });
+//p2.setFieldValueCallbacks({ "kasus-meninggal1": onKasusMeninggalChanged });
+});
+
+    </script>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <!--<link rel='stylesheet' href='spectrum.css'>
+    <link rel="stylesheet" href="text_template.css" type="text/css">-->
+    <link rel="stylesheet" href="bootstrap-slider.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <style>
+
+    </style>
+  </head>
+  
+  <body onload="vizrt.payloadhosting.initialize()">
+    
+    <!--<input name="field_topic" type="text" id="field_topic" readonly="true">
+    <label for="field_topic">My input field:</label>
+      <span id="myfield" class="sample red">My custom 50 field-->
+</body>
+
+</html>

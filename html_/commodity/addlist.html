@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    
+    <script src="bootstrap-slider.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="payloadhosting.js"></script>
+    <script>
+$(document).ready(function () {
+    console.log("Hello world");
+
+    // Will be called when the field with id "50" changes
+function onBarChanged(value) {
+  //var myField = $("#myfield");
+     //myField.text(value);
+  var val_row;
+  if (value == "13") {
+    //cek jumlah row sekarang.
+    val_row = value;
+
+    var jumlahrosw = vizrt.payloadhosting.getListFieldLength('001');
+    for (let i = -1; i < jumlahrosw-1; i++) {
+      vizrt.payloadhosting.removeListFieldItem("001");
+			}
+    
+    for (let j = 0; j < value; j++) {
+      vizrt.payloadhosting.addListFieldItem("001",j);
+      vizrt.payloadhosting.setFieldText("001/#" + j + "/Y","1.0");
+			}
+    
+
+    
+    //vizrt.payloadhosting.setFieldText("001/#0/Y","1.0");
+    //vizrt.payloadhosting.setFieldText("001/#1/Y","5.0");
+    //vizrt.payloadhosting.setFieldText("001/#2/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#3/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#4/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#5/Y","2.0");
+    //vizrt.payloadhosting.setFieldText("001/#6/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#7/Y","3.0");
+    //vizrt.payloadhosting.setFieldText("001/#8/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#9/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#10/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#11/Y","7.0");
+    //vizrt.payloadhosting.setFieldText("001/#12/Y","7.0");
+
+    console.log(vizrt.payloadhosting.getListFieldLength('001'));
+  } 
+
+  else if (value == "12") {
+    //vizrt.payloadhosting.setFieldText("5",'<?xml version="1.0"?><entry><element description=""><entry name="data"><entry name="y">1.00000000</entry></entry></element></entry>');
+   
+   //cek jumlah row sekarang.
+   var jumlahrosw = vizrt.payloadhosting.getListFieldLength('001');
+    for (let i = -1; i < jumlahrosw-1; i++) {
+      vizrt.payloadhosting.removeListFieldItem("001");
+			}
+    
+    for (let j = 0; j < value; j++) {
+      vizrt.payloadhosting.addListFieldItem("001",j);
+      vizrt.payloadhosting.setFieldText("001/#" + j + "/Y","1.0");
+			}
+
+      console.log(vizrt.payloadhosting.getListFieldLength('001'));
+  }
+
+  else if (value == "11") {
+    //vizrt.payloadhosting.setFieldText("5",'<?xml version="1.0"?><entry><element description=""><entry name="data"><entry name="y">1.00000000</entry></entry></element></entry>');
+   
+   //cek jumlah row sekarang.
+   var jumlahrosw = vizrt.payloadhosting.getListFieldLength('001');
+    for (let i = -1; i < jumlahrosw-1; i++) {
+      vizrt.payloadhosting.removeListFieldItem("001");
+			}
+    
+    for (let j = 0; j < value; j++) {
+      vizrt.payloadhosting.addListFieldItem("001",j);
+      vizrt.payloadhosting.setFieldText("001/#" + j + "/Y","1.0");
+			}
+
+      console.log(vizrt.payloadhosting.getListFieldLength('001'));
+  }
+  
+    }
+
+var pl = vizrt.payloadhosting;
+pl.initialize();
+pl.setFieldValueCallbacks({ "jumlahrow": onBarChanged });
+});
+
+    </script>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-slider.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <style>
+
+    </style>
+  </head>
+  
+  <body onload="vizrt.payloadhosting.initialize()">
+    
+    <!--<input name="field_topic" type="text" id="field_topic" readonly="true">
+    <label for="field_topic">My input field:</label>
+      <span id="myfield" class="sample red">My custom 50 field-->
+</body>
+
+</html>
