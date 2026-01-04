@@ -1,0 +1,60 @@
+vizrt.onClick = (name: string) => {
+  //if (name !== "updatebutton") return;
+
+if (name === "updatebutton") {
+  const fields: any = vizrt.fields;
+  const keys = Object.keys(fields);
+
+  const g1: string[] = [];
+  const g2: string[] = [];
+
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    if (k.indexOf("$G1_") === 0) {
+      g1.push(k);
+    }
+    if (k.indexOf("$G2_") === 0) {
+      g2.push(k);
+    }
+  }
+
+  // 
+  for (let i = 0; i < g1.length; i++) {
+    fields[g1[i]].hidden = false;
+  }
+
+    // 
+  for (let i = 0; i < g2.length; i++) {
+    fields[g2[i]].hidden = true;
+  }
+  }
+
+
+  if (name === "updatebutton2") {
+  const fields: any = vizrt.fields;
+  const keys = Object.keys(fields);
+
+  const g1: string[] = [];
+  const g2: string[] = [];
+
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    if (k.indexOf("$G1_") === 0) {
+      g1.push(k);
+    }
+    if (k.indexOf("$G2_") === 0) {
+      g2.push(k);
+    }
+  }
+
+  // 
+  for (let i = 0; i < g1.length; i++) {
+    fields[g1[i]].hidden = true;
+  }
+
+    // 
+  for (let i = 0; i < g2.length; i++) {
+    fields[g2[i]].hidden = false;
+  }
+  }
+};

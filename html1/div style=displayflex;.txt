@@ -1,0 +1,6 @@
+<div style="display:flex;">
+  <button vizrt-click-name="updatebutton" style="width: 50px; height: 25px;background:{{BTN_COLOR}};">PAGE1</button>
+  <button vizrt-click-name="updatebutton2" style="width: 50px; height: 25px;background:{{BTN_COLOR2}};">PAGE2</button>
+  <button vizrt-click-name="updatebutton3" style="width: 50px; height: 25px;background:{{BTN_COLOR3}};">PAGE3</button>
+</div>
+

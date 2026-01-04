@@ -1,0 +1,31 @@
+type VizField<T = any> = { value: T };
+
+function toBool(v: any): boolean {
+  return v === true || v === "true" || v === 1 || v === "1";
+}
+
+/**
+ * Toggle field boolean Vizrt, optional update warna.
+ * return: nilai boolean BARU (setelah toggle)
+ */
+function toggleVizBoolean(opts: {
+  boolField: VizField;
+  colorField?: VizField<string>;
+  trueColor?: string;
+  falseColor?: string;
+  onChange?: (next: boolean, prev: boolean) => void;
+}): boolean {
+  const prev = toBool(opts.boolField.value);
+  const next = !prev;
+
+  opts.boolField.value = next;
+
+  if (opts.colorField) {
+    opts.colorField.value = next
+      ? (opts.trueColor ?? "#14b814")
+      : (opts.falseColor ?? "#FF0000");
+  }
+
+  opts.onChange?.(next, prev);
+  return next;
+}

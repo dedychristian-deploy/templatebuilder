@@ -1,0 +1,68 @@
+// Template script goes here
+vizrt.onClick = (name: string) => {
+  const fields: any = vizrt.fields;
+
+  const toggle = (showPrefix: string) => {
+    Object.keys(fields).forEach(k => {
+      if (k.indexOf("$G") === 0) {
+        fields[k].hidden = k.indexOf(showPrefix) !== 0;
+      }
+    });
+  };
+
+  const buttons: any = {
+    updatebutton: {
+      show: "$G1_",
+      btn1: "#04aa6d",
+      btn2: "#ffffff11",
+      btn3: "#ffffff11",
+      btn4: "#ffffff11",
+      btn5: "#ffffff11",
+    },
+    updatebutton2: {
+      show: "$G2_",
+      btn1: "#ffffff11",
+      btn2: "#04aa6d",
+      btn3: "#ffffff11",
+      btn4: "#ffffff11",
+      btn5: "#ffffff11",
+    },
+    updatebutton3: {
+      show: "$G3_",
+      btn1: "#ffffff11",
+      btn2: "#ffffff11",
+      btn3: "#04aa6d",
+      btn4: "#ffffff11",
+      btn5: "#ffffff11",
+    },
+    updatebutton4: {
+      show: "$G4_",
+      btn1: "#ffffff11",
+      btn2: "#ffffff11",
+      btn3: "#ffffff11",
+      btn4: "#04aa6d",
+      btn5: "#ffffff11",
+    },
+    updatebutton5: {
+      show: "$G5_",
+      btn1: "#ffffff11",
+      btn2: "#ffffff11",
+      btn3: "#ffffff11",
+      btn4: "#ffffff11",
+      btn5: "#04aa6d",
+    },
+  };
+
+  const cfg = buttons[name];
+  if (!cfg) return;
+
+  // show 1 group, hide others
+  toggle(cfg.show);
+
+  // update warna button
+  if (fields.$BTN_COLOR)  fields.$BTN_COLOR.value  = cfg.btn1;
+  if (fields.$BTN_COLOR2) fields.$BTN_COLOR2.value = cfg.btn2;
+  if (fields.$BTN_COLOR3) fields.$BTN_COLOR3.value = cfg.btn3;
+  if (fields.$BTN_COLOR4) fields.$BTN_COLOR4.value = cfg.btn4;
+  if (fields.$BTN_COLOR5) fields.$BTN_COLOR5.value = cfg.btn5;
+};

@@ -1,0 +1,65 @@
+Sub OnUpdatePayload(Data)
+  ' Assign field dari data input
+  Set field0 = Data("01_COMPANY")   ' company
+  Set field1 = Data("01_PRICE")     ' price
+  Set field2 = Data("01_POINT")     ' change
+  Set field3 = Data("01_B_SIGN")    ' percent
+
+  Set code_b1 = Data("code")        ' code_b
+
+  Dim url, jsonText, json
+  url = "http://localhost:3000/api/summary-live/"
+
+  jsonText = GetAPIResponse(url & code_b1.Value)
+  If jsonText = "" Then Exit Sub
+
+  Set json = ParseJSON(jsonText)
+  If json Is Nothing Then Exit Sub
+
+  ' Isi field ke DataPool
+  field0.Value = json("stockname")
+  field1.Value = Replace(json("last_price"), ",", ".")
+  field2.Value = Replace(json("net_change"), ",", ".")
+  field3.Value = Replace(json("pct_change"), ",", ".")
+End Sub
+
+
+' ======================
+' Fungsi fetch API
+' ======================
+Function GetAPIResponse(url)
+  On Error Resume Next
+  Dim http
+  Set http = CreateObject("MSXML2.XMLHTTP")
+  http.Open "GET", url, False
+  http.Send
+  If http.Status = 200 Then
+    GetAPIResponse = http.ResponseText
+  Else
+    GetAPIResponse = ""
+  End If
+End Function
+
+
+' ======================
+' Fungsi parse JSON aman (tanpa error)
+' ======================
+Function ParseJSON(jsonText)
+  On Error Resume Next
+  Dim sc, code
+  Set sc = CreateObject("MSScriptControl.ScriptControl")
+  sc.Language = "JScript"
+
+  code = ""
+  code = code & "function parseAndReturn(objStr) {" & vbCrLf
+  code = code & "  var o = eval('(' + objStr + ')');" & vbCrLf
+  code = code & "  var result = new ActiveXObject('Scripting.Dictionary');" & vbCrLf
+  code = code & "  for (var k in o) {" & vbCrLf
+  code = code & "    result.Add(k, String(o[k]));" & vbCrLf  ' ubah jadi String() biar aman
+  code = code & "  }" & vbCrLf
+  code = code & "  return result;" & vbCrLf
+  code = code & "}" & vbCrLf
+
+  sc.AddCode code
+  Set ParseJSON = sc.Run("parseAndReturn", jsonText)
+End Function

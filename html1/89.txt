@@ -1,0 +1,36 @@
+vizrt.onClick = (name: string) => {
+  if (name === "updatebutton") {
+
+    const untypeFields = vizrt.fields as any;
+    console.log("fields keys:", Object.keys(untypeFields));
+
+  }
+};
+
+    const vf  = vizrt.fields;
+    vizrt.fields.$01_SOURCE_R.onChanged = (value: string) => {
+   console.log(value);
+   if(value === "0"){
+    //open group 1, close group 2-3
+    vf.$image_1.hidden = true;
+    vf.$LIVE_01.value = "100";
+    vf.$LOGO_01.value = "0";
+   }
+   else if(value === "1"){
+    //open group 1, close group 2-3
+    vf.$image_1.hidden = true;
+    vf.$LIVE_01.value = "0";
+    vf.$LOGO_01.value = "100";
+   }
+    else if(value === "2"){
+    //open group 1, close group 2-3
+    vf.$image_1.hidden = false;
+    vf.$LIVE_01.value = "0";
+    vf.$LOGO_01.value = "0";
+   }
+   else{
+    vf.$image_1.hidden = false;
+    vf.$LIVE_01.value = "100";
+    vf.$LOGO_01.value = "100";
+   }
+}

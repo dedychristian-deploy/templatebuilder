@@ -1,0 +1,31 @@
+vizrt.onClick = (name: string) => {
+    let name1: boolean = vizrt.fields.$boolean.value
+    const untypeFields = vizrt.fields as any
+
+    //console.log(untypeFields["fragment1"].visibility)
+  if (name === "updatebutton") {
+    if (name1 === false) {
+      vizrt.fields.$boolean.value = true
+      vizrt.fields.$BTN_COLOR.value = "#FF0000"
+      //untypeFields["iframe"].hidden = true
+       vizrt.fields.$FRAG_DISPLAY.value = "block"
+    }
+    else if (name1 === true) {
+      vizrt.fields.$boolean.value = false
+      vizrt.fields.$BTN_COLOR.value = "#14b814"
+      vizrt.fields.$FRAG_DISPLAY.value = "none"
+    }
+  }
+}
+
+
+vizrt.onClick = (name: string) => {
+  if (name === "updatebutton") {
+
+    const untypeFields = vizrt.fields as any;
+
+console.log("fields keys:", Object.keys(untypeFields));
+
+  }
+};
+
