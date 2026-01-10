@@ -1,6 +1,7 @@
 // Template script goes here
 vizrt.fields.$code.onChanged = (ric) =>{
-    fetch("http://127.0.0.1:3000/api/summary-live/" + ric)
+    //fetch("http://127.0.0.1:3000/api/summary-live/" + ric)
+    fetch("http://127.0.0.1/text_json_converted/JKSE.JSON")
     .then(response => {
       if (!response.ok) {
         throw new Error("HTTP " + response.status);
@@ -9,8 +10,10 @@ vizrt.fields.$code.onChanged = (ric) =>{
     })
     .then(data =>{
         console.log(data);
-
-
+        vizrt.fields.$01_COMPANY.value = data.stockname
+        vizrt.fields.$01_PRICE.value = data.last_price 
+        vizrt.fields.$01_POINT.value = data.net_change 
+        vizrt.fields.$01_B_SIGN.value = data.pct_change   
     })
     
 }
